@@ -3,7 +3,7 @@ import WorldTransform from "./WorldTransform";
 import NodeValues from "./NodeValues";
 import Method from "parsegraph-method";
 import { Projector } from "parsegraph-projector";
-import Painted, {PaintedNode} from "./Painted";
+import Painted, { PaintedNode } from "./Painted";
 
 export default class Pizza<
   Model extends Painted<Model, View> = any,
