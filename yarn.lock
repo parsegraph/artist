@@ -4550,10 +4550,10 @@ parsegraph-interact@^1.6.5:
     webpack "^5.52.0"
     webpack-cli "^4.8.0"
 
-parsegraph-layout@^1.7.20:
-  version "1.7.20"
-  resolved "https://registry.yarnpkg.com/parsegraph-layout/-/parsegraph-layout-1.7.20.tgz#7e9230ea9db6224e470c885879dd5e50a798291a"
-  integrity sha512-0sGqXt82ziJr6TWZRJMmN7kFXL/OOUpjqKY8XwWlMpQtZtbxNKMnpEA+IzNQ8hjNzvnnKWzZx7fpv6Fv3x55Eg==
+parsegraph-layout@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/parsegraph-layout/-/parsegraph-layout-1.8.0.tgz#4587321e2597fafd01246fd3775ec6ad82b4887f"
+  integrity sha512-kZPG4K4fxN2YDXBzpVN/uJUQA+htdXzugCsLY+ocMecJwXd4wuR/pnGzpkJacraoD0Q5lac6AKiJgYu2ioMc8A==
   dependencies:
     parsegraph-direction "^2.0.10"
     parsegraph-extent "^1.4.11"
