@@ -1,22 +1,4 @@
-# artist
+# parsegraph-artist
 
-This is for Node projects:
-
-## Setup
-
-1. Pick a new package name.
-
-2. Go to https://github.com/parsegraph/ and create a new repository using that name.
-
-3. Clone latest microproject from https://github.com/parsegraph/artist
-
-4. Run ./update-package-name.sh with your package name:
-
-<pre>
-  # Set the package name to test
-  ./update-package-name.sh test
-</pre>
-
-5. Commit (e.g. "Give package a name")
-
-6. Push the repository to Github.
+This module contains the Painted and Artist interfaces, as well as Pizza, which
+distributes the paint/render loop over a paint group's nodes.
