@@ -1,5 +1,5 @@
 import NodeValues from "./NodeValues";
-import Artist from "./Artist";
+import Artist, {WorldRenderable} from "./Artist";
 import Transformed from "./Transformed";
 import WorldTransform from "./WorldTransform";
 import PaintedNode from "./PaintedNode";
@@ -17,6 +17,7 @@ import FrozenNodeFragment from "./freezer/FrozenNodeFragment";
 export default Artist;
 export {
   Pizza,
+  WorldRenderable,
   NodeValues,
   Transformed,
   WorldTransform,
