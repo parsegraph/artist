@@ -56,5 +56,10 @@
     "parsegraph-layout": "^1.7.20",
     "parsegraph-projector": "^1.8.16",
     "parsegraph-timingbelt": "^1.7.11"
+  },
+  "peerDependencies": {
+    "parsegraph-checkglerror": "^1.5.3",
+    "parsegraph-log": "^1.7.3",
+    "webgl-debug": "^2.0.1"
   }
 }
