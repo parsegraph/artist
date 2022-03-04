@@ -3,10 +3,12 @@ DIST_NAME = artist
 SCRIPT_FILES = \
 	src/Painted.ts \
 	src/index.ts \
+	src/paintNodeLines.ts \
 	src/Transformed.ts \
 	src/Artist.ts \
 	src/PaintedNode.ts \
 	src/Pizza.ts \
+	src/glsl.d.ts \
 	src/freezer/FreezerCache.ts \
 	src/freezer/Freezable.ts \
 	src/freezer/Freezer.ts \
