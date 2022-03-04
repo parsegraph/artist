@@ -49,6 +49,8 @@
   },
   "dependencies": {
     "parsegraph-direction": "^2.0.10",
+    "parsegraph-interact": "^1.6.5",
+    "parsegraph-layout": "^1.7.20",
     "parsegraph-projector": "^1.8.16",
     "parsegraph-timingbelt": "^1.7.11"
   }
