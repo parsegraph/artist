@@ -1,5 +1,5 @@
 import NodeValues from "./NodeValues";
-import Artist, {WorldRenderable} from "./Artist";
+import Artist, { WorldRenderable } from "./Artist";
 import Transformed from "./Transformed";
 import WorldTransform from "./WorldTransform";
 import Painted from "./Painted";

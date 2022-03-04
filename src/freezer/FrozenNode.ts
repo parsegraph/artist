@@ -5,7 +5,7 @@ import { Projector } from "parsegraph-projector";
 import { Matrix3x3 } from "parsegraph-matrix";
 import log from "parsegraph-log";
 import { WorldRenderable } from "../Artist";
-import { paintGroupBounds } from 'parsegraph-layout';
+import { paintGroupBounds } from "parsegraph-layout";
 
 export default class FrozenNode {
   _node: PaintedNode;
