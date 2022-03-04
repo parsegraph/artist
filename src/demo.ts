@@ -1,11 +1,33 @@
-import todo from ".";
+import {NodeValues} from ".";
+import Direction, {DirectionNode} from "parsegraph-direction";
+
+const buildGraph = ()=>{
+  const root = new DirectionNode();
+  let par = root;
+  for (let i = 0; i < 3; ++i) {
+    const n = new DirectionNode();
+    par.connectNode(Direction.FORWARD, n);
+    par = n
+  }
+  const joint = new DirectionNode();
+  par.connectNode(Direction.DOWNWARD, joint);
+  par = joint
+  for (let i = 0; i < 3; ++i) {
+    const n = new DirectionNode();
+    par.connectNode(Direction.FORWARD, n);
+    par = n
+  }
+  return root;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("demo");
   root.style.position = "relative";
 
+  const values = new NodeValues(buildGraph());
+
   const container = document.createElement("div");
-  container.innerHTML = `${todo()}`;
+  container.innerHTML = `Graph has ${values.length()} nodes`;
   container.style.position = "absolute";
   container.style.left = "0px";
   container.style.top = "0px";
