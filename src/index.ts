@@ -14,10 +14,10 @@ import FreezerSlot from "./freezer/FreezerSlot";
 import FrozenNode from "./freezer/FrozenNode";
 import FrozenNodeFragment from "./freezer/FrozenNodeFragment";
 
+export default Artist;
 export {
   Pizza,
   NodeValues,
-  Artist,
   Transformed,
   WorldTransform,
   PaintedNode,
