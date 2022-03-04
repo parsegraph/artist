@@ -6,7 +6,7 @@ import Painted from "./Painted";
 import PaintedNode from "./PaintedNode";
 import PaintedCaret from "./PaintedCaret";
 import Pizza from "./Pizza";
-import paintNodeLines, {LinePainter} from "./paintNodeLines";
+import paintNodeLines, { LinePainter } from "./paintNodeLines";
 
 import Freezable from "./freezer/Freezable";
 import Freezer, { FREEZER_TEXTURE_SCALE } from "./freezer/Freezer";
