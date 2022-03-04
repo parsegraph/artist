@@ -1,6 +1,6 @@
 {
   "name": "parsegraph-artist",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "artist",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
