@@ -51,10 +51,15 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "parsegraph-camera": "^1.4.11",
+    "parsegraph-compileprogram": "^2.2.9",
     "parsegraph-direction": "^2.0.10",
     "parsegraph-interact": "^1.6.5",
     "parsegraph-layout": "^1.7.20",
+    "parsegraph-matrix": "^1.4.11",
+    "parsegraph-method": "^1.4.22",
     "parsegraph-projector": "^1.8.16",
+    "parsegraph-timing": "^1.4.16",
     "parsegraph-timingbelt": "^1.7.11"
   },
   "peerDependencies": {

@@ -4454,6 +4454,14 @@ parse5@6.0.1:
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
 
+parsegraph-camera@^1.4.11:
+  version "1.4.11"
+  resolved "https://registry.yarnpkg.com/parsegraph-camera/-/parsegraph-camera-1.4.11.tgz#7b5815c638ac489f7fabbad95c41b7661d72f8ac"
+  integrity sha512-CP2ULDAJiLsepuuDCTobluIrDSU2h6vbeQmx5raWjzGIxePa8prIQsrencht++ItfGQZ6h5Iu4iEnr+0zXfQ5A==
+  dependencies:
+    parsegraph-matrix "^1.4.11"
+    parsegraph-rect "^1.4.7"
+
 parsegraph-color@^1.4.7:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/parsegraph-color/-/parsegraph-color-1.4.7.tgz#8aa69bd3c93fa8bcc36f6783893716bd752fba87"
