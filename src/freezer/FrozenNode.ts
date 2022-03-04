@@ -1,11 +1,11 @@
 import Freezer from "./Freezer";
-import paintGroupBounds from "../paintGroupBounds";
 import PaintedNode from "../PaintedNode";
 import FrozenNodeFragment from "./FrozenNodeFragment";
 import { Projector } from "parsegraph-projector";
 import { Matrix3x3 } from "parsegraph-matrix";
 import log from "parsegraph-log";
 import { WorldRenderable } from "../Artist";
+import { paintGroupBounds } from 'parsegraph-layout';
 
 export default class FrozenNode {
   _node: PaintedNode;
