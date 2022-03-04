@@ -2,7 +2,9 @@ import NodeValues from "./NodeValues";
 import Artist, {WorldRenderable} from "./Artist";
 import Transformed from "./Transformed";
 import WorldTransform from "./WorldTransform";
+import Painted from "./Painted";
 import PaintedNode from "./PaintedNode";
+import PaintedCaret from "./PaintedCaret";
 import Pizza from "./Pizza";
 
 import Freezable from "./freezer/Freezable";
@@ -21,7 +23,9 @@ export {
   NodeValues,
   Transformed,
   WorldTransform,
+  Painted,
   PaintedNode,
+  PaintedCaret,
   Freezable,
   FreezerCache,
   FreezerRow,

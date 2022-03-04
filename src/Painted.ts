@@ -1,4 +1,3 @@
-import { DirectionNode } from "parsegraph-direction";
 import { Positioned } from "parsegraph-layout";
 import Artist, { WorldRenderable } from "./Artist";
 import Freezable from "./freezer/Freezable";
@@ -15,8 +14,3 @@ export default interface Painted<
    */
   artist(): Artist<Model, View>;
 }
-
-export type PaintedNode<
-  Model extends Painted<Model, View> = any,
-  View extends WorldRenderable = WorldRenderable
-> = DirectionNode<Model & Painted<Model, View>>;
