@@ -70,7 +70,7 @@ export default class Pizza<
     return this._root;
   }
 
-  populate(root: ProjectedNode<Model, View>) {
+  populate(root: PaintedNode<Model, View>) {
     this._root = root;
     let seq: NodeValues<Model> = null;
     let seqArtist: Artist<Model, View> = null;
