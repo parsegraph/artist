@@ -7,7 +7,9 @@ import PaintedNode from "./PaintedNode";
 import PaintedCaret from "./PaintedCaret";
 import Pizza from "./Pizza";
 import paintNodeLines, { LinePainter } from "./paintNodeLines";
+import paintNodeBounds from "./paintNodeBounds";
 import AbstractScene from "./AbstractScene";
+import RenderArtist, {RenderScene, RenderFunc} from "./RenderArtist";
 
 import Freezable from "./freezer/Freezable";
 import Freezer, { FREEZER_TEXTURE_SCALE } from "./freezer/Freezer";
@@ -20,9 +22,11 @@ import FrozenNodeFragment from "./freezer/FrozenNodeFragment";
 
 export default Artist;
 export {
+  RenderArtist, RenderScene, RenderFunc,
   AbstractScene,
   Pizza,
   paintNodeLines,
+  paintNodeBounds,
   LinePainter,
   WorldRenderable,
   NodeValues,
