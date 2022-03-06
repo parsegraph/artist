@@ -1,12 +1,14 @@
 DIST_NAME = artist
 
 SCRIPT_FILES = \
+	src/paintNodeBounds.ts \
 	src/Painted.ts \
 	src/index.ts \
 	src/paintNodeLines.ts \
 	src/Transformed.ts \
 	src/Artist.ts \
 	src/PaintedNode.ts \
+	src/BasicPainted.ts \
 	src/Pizza.ts \
 	src/AbstractScene.ts \
 	src/glsl.d.ts \
@@ -21,6 +23,8 @@ SCRIPT_FILES = \
 	src/PaintedCaret.ts \
 	src/NodeValues.ts \
 	src/WorldTransform.ts \
+	src/Repaintable.ts \
+	src/RenderArtist.ts \
 	src/demo.ts \
 	test/test.ts
 
