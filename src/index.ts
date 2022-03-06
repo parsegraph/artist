@@ -7,6 +7,7 @@ import PaintedNode from "./PaintedNode";
 import PaintedCaret from "./PaintedCaret";
 import Pizza from "./Pizza";
 import paintNodeLines, { LinePainter } from "./paintNodeLines";
+import AbstractScene from "./AbstractScene";
 
 import Freezable from "./freezer/Freezable";
 import Freezer, { FREEZER_TEXTURE_SCALE } from "./freezer/Freezer";
@@ -19,6 +20,7 @@ import FrozenNodeFragment from "./freezer/FrozenNodeFragment";
 
 export default Artist;
 export {
+  AbstractScene,
   Pizza,
   paintNodeLines,
   LinePainter,
