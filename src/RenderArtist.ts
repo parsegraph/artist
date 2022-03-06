@@ -1,9 +1,10 @@
+import { DirectionNode } from "parsegraph-direction";
 import { Projector } from "parsegraph-projector";
 import NodeValues from "./NodeValues";
 import Artist from "./Artist";
 import AbstractScene from "./AbstractScene";
 
-export type RenderFunc<Model> = (projector: Projector, val: Model) => boolean;
+export type RenderFunc<Model> = (projector: Projector, val: DirectionNode<Model>) => boolean;
 
 export class RenderScene<Model> extends AbstractScene {
   _renderFunc: RenderFunc<Model>;

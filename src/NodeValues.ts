@@ -21,7 +21,7 @@ export default class NodeValues<Value = any> {
     this._length += count;
   }
 
-  iterate(): () => Value {
+  iterate(): () => DirectionNode<Value> {
     let n = this._root;
     let i = 0;
     return () => {
@@ -31,14 +31,14 @@ export default class NodeValues<Value = any> {
       ++i;
       const rv = n;
       n = n.siblings().prev() as DirectionNode<Value>;
-      return rv.value();
+      return rv;
     };
   }
 
-  forEach(cb: (val: Value) => void) {
+  forEach(cb: (val: DirectionNode<Value>) => void) {
     let n = this._root;
     for (let i = 0; i < this._length; ++i) {
-      cb(n.value());
+      cb(n);
       n = n.siblings().prev() as DirectionNode<Value>;
     }
   }
