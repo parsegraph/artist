@@ -15,16 +15,17 @@ export const MIN_BLOCK_HEIGHT = BUD_RADIUS * 12;
 export const MIN_BLOCK_WIDTH = BUD_RADIUS * 15;
 
 // Inter-node spacing
-export const HORIZONTAL_SEPARATION_PADDING = BUD_RADIUS;
-export const VERTICAL_SEPARATION_PADDING = BUD_RADIUS / 2;
+export const HORIZONTAL_SEPARATION_PADDING = 7 * BUD_RADIUS;
+export const VERTICAL_SEPARATION_PADDING = 6 * BUD_RADIUS / 2;
 
-export default class AbstractPainted<Model extends Painted<Model>> implements Painted<Model> {
+export default class BasicPainted<Model extends Painted<Model> = Painted> implements Painted<Model> {
   private _layout: Layout;
   private _interactor: Interaction;
   private _node: PaintedNode<Model>;
   private _cache: FreezerCache;
   private _artist: Artist<Model>;
   private _onUpdate: Repaintable;
+  private _size: Size;
 
   constructor(node: PaintedNode<Model>, artist: Artist<Model>) {
     this._node = node;
@@ -33,6 +34,7 @@ export default class AbstractPainted<Model extends Painted<Model>> implements Pa
     this._cache = new FreezerCache(node);
     this._artist = artist;
     this._onUpdate = null;
+    this._size = new Size(MIN_BLOCK_WIDTH, MIN_BLOCK_HEIGHT);
   }
 
   protected setArtist(artist: Artist<Model>) {
@@ -43,12 +45,17 @@ export default class AbstractPainted<Model extends Painted<Model>> implements Pa
     this.scheduleRepaint();
   }
 
+  setSize(w: number, h: number) {
+    this._size.setWidth(w);
+    this._size.setHeight(h);
+  }
+
   size(bodySize?: Size):Size {
     if (!bodySize) {
       bodySize = new Size();
     }
-    bodySize.setWidth(MIN_BLOCK_WIDTH);
-    bodySize.setHeight(MIN_BLOCK_HEIGHT);
+    bodySize.setWidth(this._size.width());
+    bodySize.setHeight(this._size.height());
     return bodySize;
   }
 

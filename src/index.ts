@@ -8,7 +8,7 @@ import PaintedCaret from "./PaintedCaret";
 import Pizza from "./Pizza";
 import paintNodeLines, { LinePainter } from "./paintNodeLines";
 import paintNodeBounds from "./paintNodeBounds";
-import AbstractPainted from "./AbstractPainted";
+import BasicPainted from "./BasicPainted";
 import AbstractScene from "./AbstractScene";
 import RenderArtist, { RenderScene, RenderFunc } from "./RenderArtist";
 import Repaintable from "./Repaintable"
@@ -27,7 +27,7 @@ export {
   RenderArtist,
   RenderScene,
   RenderFunc,
-  AbstractPainted,
+  BasicPainted,
   AbstractScene,
   Pizza,
   paintNodeLines,
