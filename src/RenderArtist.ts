@@ -3,7 +3,7 @@ import NodeValues from "./NodeValues";
 import Artist from "./Artist";
 import AbstractScene from "./AbstractScene";
 
-export type RenderFunc<Model> = (projector: Projector, val: Model)=>boolean;
+export type RenderFunc<Model> = (projector: Projector, val: Model) => boolean;
 
 export class RenderScene<Model> extends AbstractScene {
   _renderFunc: RenderFunc<Model>;
@@ -26,7 +26,7 @@ export class RenderScene<Model> extends AbstractScene {
     return !!this._renderFunc;
   }
 
-  setRenderFunc(func:RenderFunc<Model>) {
+  setRenderFunc(func: RenderFunc<Model>) {
     this._renderFunc = func;
   }
 
@@ -35,14 +35,16 @@ export class RenderScene<Model> extends AbstractScene {
       return false;
     }
     let needsUpdate = false;
-    this.values().forEach(val=>{
+    this.values().forEach((val) => {
       needsUpdate = this._renderFunc(this.projector(), val) || needsUpdate;
     });
     return needsUpdate;
   }
 }
 
-export default class RenderArtist<Model = any> implements Artist<Model, RenderScene<Model>> {
+export default class RenderArtist<Model = any>
+  implements Artist<Model, RenderScene<Model>>
+{
   _renderFunc: RenderFunc<Model>;
 
   constructor(func: RenderFunc<Model>) {
