@@ -8,6 +8,7 @@ SCRIPT_FILES = \
 	src/Artist.ts \
 	src/PaintedNode.ts \
 	src/Pizza.ts \
+	src/AbstractScene.ts \
 	src/glsl.d.ts \
 	src/freezer/FreezerCache.ts \
 	src/freezer/Freezable.ts \
