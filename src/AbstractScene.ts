@@ -3,8 +3,8 @@ import { Projector } from "parsegraph-projector";
 import Method from "parsegraph-method";
 
 export default abstract class AbstractScene implements WorldRenderable {
-  _projector: Projector;
-  _world: WorldTransform;
+  private _projector: Projector;
+  private _world: WorldTransform;
   private _onUpdate: Method;
 
   constructor(projector: Projector) {
