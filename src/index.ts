@@ -8,8 +8,10 @@ import PaintedCaret from "./PaintedCaret";
 import Pizza from "./Pizza";
 import paintNodeLines, { LinePainter } from "./paintNodeLines";
 import paintNodeBounds from "./paintNodeBounds";
+import AbstractPainted from "./AbstractPainted";
 import AbstractScene from "./AbstractScene";
-import RenderArtist, {RenderScene, RenderFunc} from "./RenderArtist";
+import RenderArtist, { RenderScene, RenderFunc } from "./RenderArtist";
+import Repaintable from "./Repaintable"
 
 import Freezable from "./freezer/Freezable";
 import Freezer, { FREEZER_TEXTURE_SCALE } from "./freezer/Freezer";
@@ -22,7 +24,10 @@ import FrozenNodeFragment from "./freezer/FrozenNodeFragment";
 
 export default Artist;
 export {
-  RenderArtist, RenderScene, RenderFunc,
+  RenderArtist,
+  RenderScene,
+  RenderFunc,
+  AbstractPainted,
   AbstractScene,
   Pizza,
   paintNodeLines,
@@ -45,4 +50,5 @@ export {
   FreezerSlice,
   FrozenNodeFragment,
   FrozenNode,
+  Repaintable
 };
