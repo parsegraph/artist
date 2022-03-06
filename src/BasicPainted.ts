@@ -2,7 +2,7 @@ import { Interaction } from "parsegraph-interact";
 import { Layout } from "parsegraph-layout";
 import Artist, { PaintedNode, Painted, FreezerCache } from ".";
 import Size from "parsegraph-size";
-import Direction, {Axis} from "parsegraph-direction";
+import Direction, { Axis, Alignment } from "parsegraph-direction";
 import Repaintable from "./Repaintable";
 
 export const BUD_RADIUS = 2;
@@ -54,6 +54,37 @@ export default class BasicPainted<Model extends Painted<Model> = Painted>
     }
     bodySize.setWidth(this._size.width());
     bodySize.setHeight(this._size.height());
+
+    const node = this.node();
+    if (node.hasNode(Direction.INWARD)) {
+      const nestedNode = node.nodeAt(Direction.INWARD);
+      const nestedLayout = nestedNode.value().getLayout();
+      const nestedSize = nestedLayout.extentSize();
+      const scale = nestedNode.state().scale();
+
+      if (
+        node.nodeAlignmentMode(Direction.INWARD) == Alignment.INWARD_VERTICAL
+      ) {
+        // Align vertical.
+        bodySize.setWidth(
+          Math.max(bodySize.width(), scale * nestedSize.width())
+        );
+        bodySize.setHeight(bodySize.height() + scale * nestedSize.height());
+      } else {
+        // Align horizontal.
+        bodySize.setWidth(
+          bodySize.width() +
+            scale * nestedSize.width()
+        );
+
+        bodySize.setHeight(
+          Math.max(
+            bodySize.height(),
+            scale * nestedSize.height()
+          )
+        );
+      }
+    }
     return bodySize;
   }
 
