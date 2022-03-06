@@ -147,7 +147,7 @@ export default class Pizza<
   }
 
   render() {
-    let needsUpdate = false;
+    let needsUpdate = this.projector().render();
     this.eachView((renderable) => {
       renderable.setWorldTransform(this.worldTransform());
       needsUpdate = renderable.render() || needsUpdate;

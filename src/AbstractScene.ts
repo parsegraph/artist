@@ -40,7 +40,9 @@ export default abstract class AbstractScene implements WorldRenderable {
     return false;
   }
 
-  abstract render(): boolean;
+  render() {
+    return this.projector().render();
+  }
 
   unmount() {}
 }
