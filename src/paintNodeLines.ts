@@ -34,34 +34,35 @@ const drawLine = (
 
   const thickness =
     lineThickness * scale * directionData.getNode().state().scale();
+  const x = layout.groupX();
+  const y = layout.groupY();
+  const size = node.value().size();
+  const length =
+    directionSign(direction) *
+    parentScale *
+    (directionData.lineLength -
+      (isVerticalDirection(direction) ? size.height() : size.width()) / 2
+    );
   if (isVerticalDirection(direction)) {
-    const length =
-      directionSign(direction) *
-      parentScale *
-      (directionData.lineLength - node.value().size().height() / 2);
     painter(
-      layout.groupX(),
-      layout.groupY() +
+      x,
+      y +
         length / 2 +
         (parentScale *
           directionSign(direction) *
-          node.value().size().height()) /
+          size.height()) /
           2,
       thickness,
       Math.abs(length)
     );
   } else {
     // Horizontal line.
-    const length =
-      directionSign(direction) *
-      parentScale *
-      (directionData.lineLength - node.value().size().width() / 2);
     painter(
-      layout.groupX() +
+      x +
         length / 2 +
-        (parentScale * directionSign(direction) * node.value().size().width()) /
+        (parentScale * directionSign(direction) * size.width()) /
           2,
-      layout.groupY(),
+      y,
       Math.abs(length),
       thickness
     );

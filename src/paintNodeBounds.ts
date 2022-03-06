@@ -7,5 +7,9 @@ export default function paintNodeBounds(
 ) {
   const layout = node.value().getLayout();
   const size = layout.groupSize();
-  painter(layout.groupX(), layout.groupY(), size.width(), size.height());
+  const x = layout.groupX();
+  const y = layout.groupY();
+  const w = size.width();
+  const h = size.height();
+  painter(x, y, w, h);
 }
