@@ -41,17 +41,13 @@ const drawLine = (
     directionSign(direction) *
     parentScale *
     (directionData.lineLength -
-      (isVerticalDirection(direction) ? size.height() : size.width()) / 2
-    );
+      (isVerticalDirection(direction) ? size.height() : size.width()) / 2);
   if (isVerticalDirection(direction)) {
     painter(
       x,
       y +
         length / 2 +
-        (parentScale *
-          directionSign(direction) *
-          size.height()) /
-          2,
+        (parentScale * directionSign(direction) * size.height()) / 2,
       thickness,
       Math.abs(length)
     );
@@ -60,8 +56,7 @@ const drawLine = (
     painter(
       x +
         length / 2 +
-        (parentScale * directionSign(direction) * size.width()) /
-          2,
+        (parentScale * directionSign(direction) * size.width()) / 2,
       y,
       Math.abs(length),
       thickness

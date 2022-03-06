@@ -11,7 +11,7 @@ import paintNodeBounds from "./paintNodeBounds";
 import BasicPainted from "./BasicPainted";
 import AbstractScene from "./AbstractScene";
 import RenderArtist, { RenderScene, RenderFunc } from "./RenderArtist";
-import Repaintable from "./Repaintable"
+import Repaintable from "./Repaintable";
 
 import Freezable from "./freezer/Freezable";
 import Freezer, { FREEZER_TEXTURE_SCALE } from "./freezer/Freezer";
@@ -50,5 +50,5 @@ export {
   FreezerSlice,
   FrozenNodeFragment,
   FrozenNode,
-  Repaintable
+  Repaintable,
 };

@@ -1,10 +1,6 @@
 import { Interaction } from "parsegraph-interact";
 import { Layout } from "parsegraph-layout";
-import Artist, {
-  PaintedNode,
-  Painted,
-  FreezerCache,
-} from ".";
+import Artist, { PaintedNode, Painted, FreezerCache } from ".";
 import Size from "parsegraph-size";
 import Direction, {Axis} from "parsegraph-direction";
 import Repaintable from "./Repaintable";
@@ -16,9 +12,11 @@ export const MIN_BLOCK_WIDTH = BUD_RADIUS * 15;
 
 // Inter-node spacing
 export const HORIZONTAL_SEPARATION_PADDING = 7 * BUD_RADIUS;
-export const VERTICAL_SEPARATION_PADDING = 6 * BUD_RADIUS / 2;
+export const VERTICAL_SEPARATION_PADDING = 3 * BUD_RADIUS;
 
-export default class BasicPainted<Model extends Painted<Model> = Painted> implements Painted<Model> {
+export default class BasicPainted<Model extends Painted<Model> = Painted>
+  implements Painted<Model>
+{
   private _layout: Layout;
   private _interactor: Interaction;
   private _node: PaintedNode<Model>;
@@ -50,7 +48,7 @@ export default class BasicPainted<Model extends Painted<Model> = Painted> implem
     this._size.setHeight(h);
   }
 
-  size(bodySize?: Size):Size {
+  size(bodySize?: Size): Size {
     if (!bodySize) {
       bodySize = new Size();
     }
