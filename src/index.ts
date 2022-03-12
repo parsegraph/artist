@@ -8,7 +8,13 @@ import PaintedCaret from "./PaintedCaret";
 import Pizza from "./Pizza";
 import paintNodeLines, { LinePainter } from "./paintNodeLines";
 import paintNodeBounds from "./paintNodeBounds";
-import BasicPainted from "./BasicPainted";
+import BasicPainted, {
+  BUD_RADIUS,
+  MIN_BLOCK_HEIGHT,
+  MIN_BLOCK_WIDTH,
+  HORIZONTAL_SEPARATION_PADDING,
+  VERTICAL_SEPARATION_PADDING,
+} from "./BasicPainted";
 import AbstractScene from "./AbstractScene";
 import RenderArtist, { RenderScene, RenderFunc } from "./RenderArtist";
 import Repaintable from "./Repaintable";
@@ -28,6 +34,11 @@ export {
   RenderScene,
   RenderFunc,
   BasicPainted,
+  BUD_RADIUS,
+  MIN_BLOCK_HEIGHT,
+  MIN_BLOCK_WIDTH,
+  HORIZONTAL_SEPARATION_PADDING,
+  VERTICAL_SEPARATION_PADDING,
   AbstractScene,
   Pizza,
   paintNodeLines,
