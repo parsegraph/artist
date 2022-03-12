@@ -4564,15 +4564,15 @@ parsegraph-interact@^1.6.5:
     webpack "^5.52.0"
     webpack-cli "^4.8.0"
 
-parsegraph-layout@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/parsegraph-layout/-/parsegraph-layout-1.8.0.tgz#4587321e2597fafd01246fd3775ec6ad82b4887f"
-  integrity sha512-kZPG4K4fxN2YDXBzpVN/uJUQA+htdXzugCsLY+ocMecJwXd4wuR/pnGzpkJacraoD0Q5lac6AKiJgYu2ioMc8A==
+parsegraph-layout@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/parsegraph-layout/-/parsegraph-layout-1.8.1.tgz#842e5618b4f1f107e4a573773943ded9f5f593b9"
+  integrity sha512-bvlgYF3UW6jgXxCd8v8PG9szDp7zWEuoolBdQkm1fF4aLAFdQvThiQI0TbQgicJyYN6kT+ubhqkZp6WhEaa/LA==
   dependencies:
     parsegraph-direction "^2.0.10"
     parsegraph-extent "^1.4.11"
     parsegraph-rect "^1.4.7"
-    parsegraph-size "^1.5.8"
+    parsegraph-size "^1.6.0"
     parsegraph-timing "^1.4.16"
 
 parsegraph-matrix@^1.4.11:
@@ -4590,10 +4590,10 @@ parsegraph-normalizewheel@^1.4.7:
   resolved "https://registry.yarnpkg.com/parsegraph-normalizewheel/-/parsegraph-normalizewheel-1.4.7.tgz#a7643a28597a0b275e3d4bfe15c7eb60372b915f"
   integrity sha512-F0nTb+hZVBAZ4d8W+GZ281DDl4Br1U62fHj2oW5xxKfr1E9u/b9K4243FSYNG0XfzZzhjYoSIjUwM4ew3KMPZw==
 
-parsegraph-projector@^1.8.16:
-  version "1.8.16"
-  resolved "https://registry.yarnpkg.com/parsegraph-projector/-/parsegraph-projector-1.8.16.tgz#93e5a5925113ce2822a6676085c5917611fab6bd"
-  integrity sha512-LmK/YP4L1z1HqD52n48Lp0+LNWJiXO2XEdjP29+vLCfhE38LFMPUXkV87Wk2xSL+9fbvpHiThLCp9w2SiUJv9A==
+parsegraph-projector@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/parsegraph-projector/-/parsegraph-projector-1.9.0.tgz#01d78b5415f8e77accf78d171266cdaa3d1f96fa"
+  integrity sha512-FUh8+mjoA7Q68PDVGxAheGuVHAEfa7P5zw+m0dKbGojuMVdLJpMNkoWpl09eOnRCf/fGHYwbUflphfifQiN/6A==
   dependencies:
     parsegraph-compileprogram "^2.2.9"
     parsegraph-matrix "^1.4.11"
@@ -4611,11 +4611,6 @@ parsegraph-shader@^1.5.6:
   version "1.5.6"
   resolved "https://registry.yarnpkg.com/parsegraph-shader/-/parsegraph-shader-1.5.6.tgz#1b8bbf47e7e41aca7a4b442ed635335b6f500b46"
   integrity sha512-nzD9Z3LLXTU9NyGgJ2fx7EVkQqO1p1E5TaYeg++SiNy3grTGN7aY8JdF6qEedm3i6aG6nXt7kxxRoeoHzJUddQ==
-
-parsegraph-size@^1.5.8:
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/parsegraph-size/-/parsegraph-size-1.5.8.tgz#4912322c2df92546232d2db3fc6ba38b8b3ac7b1"
-  integrity sha512-5n4sg3LHdJKK1i8PkeQEffIt7OYW0P6dZ50nAl/m1Zw/IzYj5/9ZhZ/TPGilvKPEnIfI+z+s+F7Q1VwYDgd2ag==
 
 parsegraph-size@^1.6.0:
   version "1.6.0"
@@ -5402,17 +5397,7 @@ tr46@^3.0.0:
   dependencies:
     punycode "^2.1.1"
 
-ts-loader@^9.2.5:
-  version "9.2.7"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-9.2.7.tgz#948654099ca96992b62ec47bd9cee5632006e101"
-  integrity sha512-Fxh44mKli9QezgbdCXkEJWxnedQ0ead7DXTH+lfXEPedu+Y9EtMJ2aQ9G3Dj1j7Q612E8931rww8NDZha4Tibg==
-  dependencies:
-    chalk "^4.1.0"
-    enhanced-resolve "^5.0.0"
-    micromatch "^4.0.0"
-    semver "^7.3.4"
-
-ts-loader@^9.2.8:
+ts-loader@^9.2.5, ts-loader@^9.2.8:
   version "9.2.8"
   resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-9.2.8.tgz#e89aa32fa829c5cad0a1d023d6b3adecd51d5a48"
   integrity sha512-gxSak7IHUuRtwKf3FIPSW1VpZcqF9+MBrHOvBp9cjHh+525SjtCIJKVGjRKIAfxBwDGDGCFF00rTfzB1quxdSw==
