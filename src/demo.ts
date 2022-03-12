@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const belt = new TimingBelt();
   container.appendChild(proj.container());
 
-  setTimeout(()=>{
+  setTimeout(() => {
     proj.overlay();
     proj.render();
     proj.overlay().translate(proj.width() / 2, proj.height() / 2);
