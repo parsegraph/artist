@@ -2,7 +2,7 @@ import Artist, { WorldRenderable } from "./Artist";
 import WorldTransform from "./WorldTransform";
 import NodeValues from "./NodeValues";
 import Method from "parsegraph-method";
-import { Projector } from "parsegraph-projector";
+import { Projector, SharedProjector } from "parsegraph-projector";
 import Painted from "./Painted";
 import PaintedNode from "./PaintedNode";
 
@@ -15,12 +15,12 @@ export default class Pizza<
   private _world: WorldTransform;
   private _onUpdate: Method;
   private _numRenders: number;
-  private _projector: Projector;
+  private _projector: SharedProjector;
   private _root: PaintedNode<Model, View>;
 
   constructor(projector: Projector) {
     this._root = null;
-    this._projector = projector;
+    this._projector = new SharedProjector(projector);
     this._slices = [];
     this._world = null;
     this._numRenders = 0;
@@ -60,6 +60,7 @@ export default class Pizza<
   }
 
   scheduleUpdate() {
+    this._projector.resetDOM();
     this._onUpdate.call();
   }
 
