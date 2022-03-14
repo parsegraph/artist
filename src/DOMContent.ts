@@ -191,8 +191,8 @@ class DOMContentScene implements WorldRenderable {
 
 export class DOMContentArtist implements Artist<DOMContent> {
   patch(view: DOMContentScene, seq: NodeValues<DOMContent>) {
-    // view.setElems(seq);
-    return false;
+    view.setElems(seq);
+    return true;
   }
 
   make(projector: Projector, seq: NodeValues<DOMContent>) {
