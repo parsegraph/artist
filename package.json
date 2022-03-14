@@ -57,7 +57,7 @@
     "parsegraph-compileprogram": "^2.2.9",
     "parsegraph-direction": "^2.0.10",
     "parsegraph-interact": "^1.6.5",
-    "parsegraph-layout": "^1.8.1",
+    "parsegraph-layout": "^1.10.0",
     "parsegraph-matrix": "^1.4.11",
     "parsegraph-method": "^1.4.22",
     "parsegraph-projector": "^1.9.0",
