@@ -11,11 +11,18 @@ export default class FreezerCache {
     this._node = node;
   }
 
+  setNode(node: PaintedNode) {
+    this._node = node;
+  }
+
   node() {
     return this._node;
   }
 
   freeze(freezer: Freezer): void {
+    if (!this.node()) {
+      return;
+    }
     if (!this.node().isRoot() && !this.node().localPaintGroup()) {
       throw new Error("A node must be a paint group in order to be frozen.");
     }
@@ -31,6 +38,9 @@ export default class FreezerCache {
   }
 
   thaw(): void {
+    if (!this.node()) {
+      return;
+    }
     if (!this.node().isRoot() && !this.node().localPaintGroup()) {
       throw new Error("A node must be a paint group in order to be thawed.");
     }

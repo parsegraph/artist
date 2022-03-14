@@ -1,3 +1,4 @@
+import Size from "parsegraph-size";
 import Direction, { DirectionNode } from "parsegraph-direction";
 import { Projector, BasicProjector } from "parsegraph-projector";
 import TimingBelt from "parsegraph-timingbelt";
@@ -28,9 +29,28 @@ const artist = new RenderArtist((proj: Projector, node: DirectionNode) => {
   return false;
 });
 
+class SimplePainted extends BasicPainted {
+  _size: Size;
+
+  measure(size: Size): void {
+    if (this._size) {
+      size.copyFrom(this._size);
+    }
+  }
+
+  setSize(w: number, h: number) {
+    if (!this._size) {
+      this._size = new Size(w, h);
+    } else {
+      this._size.setSize(w, h);
+    }
+    this.invalidateLayout();
+  }
+}
+
 const makeNode = (): DirectionNode => {
   const node = new DirectionNode();
-  const val = new BasicPainted(node, artist);
+  const val = new SimplePainted(node, artist);
   val.setSize(
     MIN_BLOCK_WIDTH + Math.random() * s,
     MIN_BLOCK_HEIGHT + Math.random() * s
@@ -80,9 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
   container.appendChild(proj.container());
 
   setTimeout(() => {
-    proj.overlay();
-    proj.render();
+    proj.overlay().resetTransform();
     proj.overlay().translate(proj.width() / 2, proj.height() / 2);
+    proj.render();
     belt.addRenderable(pizza);
   }, 0);
 

@@ -73,6 +73,7 @@ export default class Pizza<
   }
 
   populate(root: PaintedNode<Model, View>) {
+    this.scheduleUpdate();
     this._root = root;
     let seq: NodeValues<Model> = null;
     let seqArtist: Artist<Model, View> = null;

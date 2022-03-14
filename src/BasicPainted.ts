@@ -1,9 +1,12 @@
 import { Interaction } from "parsegraph-interact";
 import { Layout } from "parsegraph-layout";
-import Artist, { PaintedNode, Painted, FreezerCache } from ".";
+import Artist from "./Artist";
+import Painted from "./Painted";
+import PaintedNode from "./PaintedNode";
+import FreezerCache from "./freezer/FreezerCache";
 import Size from "parsegraph-size";
 import Direction, { Axis, Alignment } from "parsegraph-direction";
-import Repaintable from "./Repaintable";
+import Method from "parsegraph-method";
 
 export const BUD_RADIUS = 2;
 
@@ -22,20 +25,28 @@ export default class BasicPainted<Model extends Painted<Model> = Painted>
   private _node: PaintedNode<Model>;
   private _cache: FreezerCache;
   private _artist: Artist<Model>;
-  private _onUpdate: Repaintable;
-  private _size: Size;
+  private _onUpdate: Method;
 
-  constructor(node: PaintedNode<Model>, artist: Artist<Model>) {
+  constructor(node: PaintedNode<Model> = null, artist: Artist<Model> = null) {
     this._node = node;
     this._interactor = new Interaction();
     this._layout = new Layout(node);
     this._cache = new FreezerCache(node);
     this._artist = artist;
-    this._onUpdate = null;
-    this._size = new Size(MIN_BLOCK_WIDTH, MIN_BLOCK_HEIGHT);
+    this._onUpdate = new Method();
   }
 
-  protected setArtist(artist: Artist<Model>) {
+  setNode(node: PaintedNode<Model>) {
+    if (this._node === node) {
+      return;
+    }
+    this._node = node;
+    this._layout.setOwner(node);
+    this._cache.setNode(node);
+    this.scheduleRepaint();
+  }
+
+  setArtist(artist: Artist<Model>) {
     if (artist === this._artist) {
       return;
     }
@@ -43,20 +54,18 @@ export default class BasicPainted<Model extends Painted<Model> = Painted>
     this.scheduleRepaint();
   }
 
-  setSize(w: number, h: number) {
-    this._size.setWidth(w);
-    this._size.setHeight(h);
+  measure(size: Size): void {
+    size.setSize(MIN_BLOCK_WIDTH, MIN_BLOCK_HEIGHT);
   }
 
   size(bodySize?: Size): Size {
     if (!bodySize) {
       bodySize = new Size();
     }
-    bodySize.setWidth(this._size.width());
-    bodySize.setHeight(this._size.height());
+    this.measure(bodySize);
 
     const node = this.node();
-    if (node.hasNode(Direction.INWARD)) {
+    if (node && node.hasNode(Direction.INWARD)) {
       const nestedNode = node.nodeAt(Direction.INWARD);
       const nestedLayout = nestedNode.value().getLayout();
       const nestedSize = nestedLayout.extentSize();
@@ -110,17 +119,16 @@ export default class BasicPainted<Model extends Painted<Model> = Painted>
   }
 
   protected invalidateLayout() {
-    this.node().layoutChanged();
-  }
-
-  protected scheduleRepaint() {
-    if (this._onUpdate) {
-      // console.log("Scheduling REPAINT");
-      this._onUpdate.scheduleRepaint();
+    if (this.node()) {
+      this.node().layoutChanged();
     }
   }
 
-  setOnScheduleUpdate(repaintable: Repaintable) {
-    this._onUpdate = repaintable;
+  protected scheduleRepaint() {
+    this._onUpdate.call();
+  }
+
+  setOnScheduleUpdate(func: ()=>void, funcObj?: object) {
+    this._onUpdate.set(func, funcObj);
   }
 }

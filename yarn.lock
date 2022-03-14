@@ -4612,6 +4612,16 @@ parsegraph-shader@^1.5.6:
   resolved "https://registry.yarnpkg.com/parsegraph-shader/-/parsegraph-shader-1.5.6.tgz#1b8bbf47e7e41aca7a4b442ed635335b6f500b46"
   integrity sha512-nzD9Z3LLXTU9NyGgJ2fx7EVkQqO1p1E5TaYeg++SiNy3grTGN7aY8JdF6qEedm3i6aG6nXt7kxxRoeoHzJUddQ==
 
+parsegraph-showincamera@^1.6.9:
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/parsegraph-showincamera/-/parsegraph-showincamera-1.6.9.tgz#371307b1ad02b5da86233d68355128850793f9ee"
+  integrity sha512-AP0tvomowkUJt4/KFPonfcDluwMJdWvHm7uzfPkimCptZItyXRdYLIouBWzElEmbO5hBns0dzsEZzizuCQ3ARg==
+  dependencies:
+    parsegraph-camera "^1.4.11"
+    parsegraph-direction "^2.0.10"
+    parsegraph-layout "^1.8.1"
+    parsegraph-size "^1.6.0"
+
 parsegraph-size@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/parsegraph-size/-/parsegraph-size-1.6.0.tgz#ccfd7c22756756c59d16d0123a0034c2a13c3ce1"
