@@ -94,8 +94,10 @@ export default class BasicPainted<Model extends Painted<Model> = Painted>
   getSeparation(axis: Axis, _: Direction, _2: boolean): number {
     if (axis === Axis.VERTICAL) {
       return VERTICAL_SEPARATION_PADDING;
+    } else if (axis === Axis.HORIZONTAL) {
+      return HORIZONTAL_SEPARATION_PADDING;
     }
-    return HORIZONTAL_SEPARATION_PADDING;
+    return 10;
   }
 
   artist(): Artist<Model> {
@@ -128,7 +130,7 @@ export default class BasicPainted<Model extends Painted<Model> = Painted>
     this._onUpdate.call();
   }
 
-  setOnScheduleUpdate(func: ()=>void, funcObj?: object) {
+  setOnScheduleUpdate(func: () => void, funcObj?: object) {
     this._onUpdate.set(func, funcObj);
   }
 }

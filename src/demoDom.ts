@@ -1,5 +1,5 @@
-import DOMContent, {DOMContentArtist} from "./DOMContent";
-import Direction, { DirectionNode } from "parsegraph-direction";
+import DOMContent, { DOMContentArtist } from "./DOMContent";
+import Direction, { Alignment, DirectionNode } from "parsegraph-direction";
 import { BasicProjector } from "parsegraph-projector";
 import TimingBelt from "parsegraph-timingbelt";
 import Pizza from "./Pizza";
@@ -16,14 +16,14 @@ import {
 
 const artist = new DOMContentArtist();
 
-const makeNode = (onUpdate:()=>void): DirectionNode => {
+const makeNode = (onUpdate: () => void): DirectionNode => {
   const node = new DirectionNode();
   const size = Math.ceil(36 * Math.random());
   const val = new DOMContent(() => {
-    const c = document.createElement("input");
+    const c = document.createElement("div");
     c.style.fontSize = size + "px";
     c.style.pointerEvents = "all";
-    c.value = "DOM";
+    c.innerText = "DOM";
     return c;
   });
   val.setArtist(artist);
@@ -33,23 +33,21 @@ const makeNode = (onUpdate:()=>void): DirectionNode => {
   return node;
 };
 
-const buildGraph = (onUpdate:()=>void) => {
+const buildGraph = (onUpdate: () => void) => {
   const root = makeNode(onUpdate);
   let par = root;
 
   const dirs = [
-    Direction.FORWARD,
-    Direction.DOWNWARD,
-    Direction.UPWARD,
-    Direction.BACKWARD,
+    Direction.INWARD,
   ];
-  for (let i = 0; i < 5; ++i) {
+  for (let i = 0; i < 20; ++i) {
     const n = makeNode(onUpdate);
     let dir = Direction.NULL;
     while (dir === Direction.NULL || par.hasNode(dir)) {
       dir = dirs[Math.floor(Math.random() * dirs.length)];
     }
     par.connectNode(dir, n);
+    par.setNodeAlignmentMode(Direction.INWARD, Alignment.INWARD_VERTICAL);
     par.pull(dir);
     par = n;
   }
@@ -74,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const cam = new Camera();
 
-  const onUpdate = ()=>{
+  const onUpdate = () => {
     console.log("Updating from belt");
     belt.scheduleUpdate();
     console.log(proj.width(), proj.height());
@@ -82,34 +80,28 @@ document.addEventListener("DOMContentLoaded", () => {
     showInCamera(rootNode, cam, false);
     console.log(cam.toJSON());
     const layout = rootNode.value().getLayout();
-    const project = ()=>{
+    const project = () => {
       const world: Matrix3x3 = cam.project();
 
       const scaleMat = matrixIdentity3x3();
       const transMat = matrixIdentity3x3();
       const worldMat = matrixIdentity3x3();
       makeScale3x3I(scaleMat, layout.absoluteScale());
-      makeTranslation3x3I(
-        transMat,
-        layout.absoluteX(),
-        layout.absoluteY()
-      );
-      matrixMultiply3x3I(
-        worldMat,
-        scaleMat,
-        transMat
-      );
+      makeTranslation3x3I(transMat, layout.absoluteX(), layout.absoluteY());
+      matrixMultiply3x3I(worldMat, scaleMat, transMat);
       matrixMultiply3x3I(worldMat, worldMat, world);
       return world;
     };
-    pizza.setWorldTransform(new WorldTransform(
-      cam.canProject() ? project() : matrixIdentity3x3(),
-      cam.scale() * rootNode.state().scale(),
-      cam.width(),
-      cam.height(),
-      cam.x() + layout.absoluteX(),
-      cam.y() + layout.absoluteY()
-    ));
+    pizza.setWorldTransform(
+      new WorldTransform(
+        cam.canProject() ? project() : matrixIdentity3x3(),
+        cam.scale() * rootNode.state().scale(),
+        cam.width(),
+        cam.height(),
+        cam.x() + layout.absoluteX(),
+        cam.y() + layout.absoluteY()
+      )
+    );
     if (cam && proj.hasOverlay()) {
       const overlay = proj.overlay();
       overlay.resetTransform();
@@ -124,12 +116,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (cam && proj.hasDOMContainer()) {
       const camScale = `scale(${cam.scale()}, ${cam.scale()})`;
-      const translate = `translate(${cam.x() + layout.absoluteX()}px, ${cam.y() + layout.absoluteY()}px)`;
+      const translate = `translate(${cam.x() + layout.absoluteX()}px, ${
+        cam.y() + layout.absoluteY()
+      }px)`;
       const nodeScale = `scale(${layout.absoluteScale()}, ${layout.absoluteScale()})`;
-      proj.getDOMContainer().style.transform = [camScale, translate, nodeScale].join(" ");
+      proj.getDOMContainer().style.transform = [
+        camScale,
+        translate,
+        nodeScale,
+      ].join(" ");
       console.log("Adding cont");
     }
-  }
+  };
 
   setTimeout(() => {
     proj.overlay();
@@ -138,8 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 0);
 
   const pizza = new Pizza(proj);
-  let rootNode = makeNode(onUpdate)
-  const toggle = ()=>{
+  let rootNode = makeNode(onUpdate);
+  const toggle = () => {
     if (timer) {
       clearInterval(timer);
       timer = null;
