@@ -78,10 +78,10 @@ export default class BasicPainted<Model extends Painted<Model> = Painted>
         bodySize.setWidth(
           Math.max(bodySize.width(), scale * nestedSize.width())
         );
-        bodySize.setHeight(bodySize.height() + scale * nestedSize.height());
+        bodySize.setHeight(bodySize.height() + this.getSeparation(Axis.Z, Direction.INWARD, true) + scale * nestedSize.height());
       } else {
         // Align horizontal.
-        bodySize.setWidth(bodySize.width() + scale * nestedSize.width());
+        bodySize.setWidth(bodySize.width() + this.getSeparation(Axis.Z, Direction.INWARD, false) + scale * nestedSize.width());
 
         bodySize.setHeight(
           Math.max(bodySize.height(), scale * nestedSize.height())
