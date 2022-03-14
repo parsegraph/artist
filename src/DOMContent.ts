@@ -161,7 +161,7 @@ class DOMContentScene implements WorldRenderable {
           .fillRect(x - w / 2, y - h / 2, w, h);
       });
       this.projector().overlay().strokeStyle = "black";
-      this.projector().overlay().fillStyle = "red";
+      this.projector().overlay().fillStyle = "rgba(1, 1, 1, .25)";
       paintNodeBounds(node, (x: number, y: number, w: number, h: number) => {
         this.projector()
           .overlay()
