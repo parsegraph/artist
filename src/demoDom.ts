@@ -73,12 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const cam = new Camera();
 
   const onUpdate = () => {
-    console.log("Updating from belt");
     belt.scheduleUpdate();
-    console.log(proj.width(), proj.height());
     cam.setSize(proj.width(), proj.height());
     showInCamera(rootNode, cam, false);
-    console.log(cam.toJSON());
     const layout = rootNode.value().getLayout();
     const project = () => {
       const world: Matrix3x3 = cam.project();
@@ -125,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
         translate,
         nodeScale,
       ].join(" ");
-      console.log("Adding cont");
     }
   };
 

@@ -148,7 +148,6 @@ class DOMContentScene implements WorldRenderable {
       return;
     }
     const tx = `scale(${world.scale()}) translate(${world.x()}px, ${world.y()}px)`;
-    console.log("Setting world transform to " + tx);
     this.getWorldElement().style.transform = tx;
   }
 
@@ -235,7 +234,6 @@ export default class DOMContent extends BasicPainted<DOMContent> {
     if (this._size.width() >= w && this._size.height() >= h) {
       return;
     }
-    console.log(w, h);
     this._size.setSize(
       Math.max(this._size.width(), w),
       Math.max(this._size.height(), h)
