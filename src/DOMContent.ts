@@ -109,30 +109,28 @@ class DOMContentScene implements WorldRenderable {
         const innerSize = new Size();
         node.value().measure(innerSize);
         const layout = node.value().getLayout();
-        const absScale = layout.groupScale() * node.nodeAt(Direction.INWARD).state().scale();
+        const absScale =
+          layout.groupScale() * node.nodeAt(Direction.INWARD).state().scale();
         // Align vertical.
         const x = layout.groupX() - (absScale * innerSize.width()) / 2;
         const y = layout.groupY() - (absScale * size.height()) / 2;
 
         const posTranslate = `translate(${x}px, ${y}px)`;
         const nodeScale = `scale(${absScale}, ${absScale})`;
-        const newTransform = [posTranslate, nodeScale].join(
-          " "
-        );
+        const newTransform = [posTranslate, nodeScale].join(" ");
         elem.style.transform = newTransform;
       } else {
         const innerSize = new Size();
         node.value().measure(innerSize);
         const layout = node.value().getLayout();
-        const absScale = layout.groupScale() * node.nodeAt(Direction.INWARD).state().scale();
+        const absScale =
+          layout.groupScale() * node.nodeAt(Direction.INWARD).state().scale();
         const x = layout.groupX() - (absScale * size.width()) / 2;
         const y = layout.groupY() - (absScale * innerSize.height()) / 2;
 
         const posTranslate = `translate(${x}px, ${y}px)`;
         const nodeScale = `scale(${absScale}, ${absScale})`;
-        const newTransform = [posTranslate, nodeScale].join(
-          " "
-        );
+        const newTransform = [posTranslate, nodeScale].join(" ");
         elem.style.transform = newTransform;
       }
     });
