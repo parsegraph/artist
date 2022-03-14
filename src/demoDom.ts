@@ -38,7 +38,11 @@ const buildGraph = (onUpdate: () => void) => {
   let par = root;
 
   const dirs = [
+    Direction.FORWARD,
+    Direction.DOWNWARD,
     Direction.INWARD,
+    Direction.UPWARD,
+    Direction.BACKWARD,
   ];
   for (let i = 0; i < 20; ++i) {
     const n = makeNode(onUpdate);
