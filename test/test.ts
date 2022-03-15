@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { Text, DOMContent, NodeValues } from "../src/index";
+import { DOMContent, NodeValues } from "../src/index";
 import Direction, { DirectionNode } from "parsegraph-direction";
 
 const buildGraph = () => {
@@ -22,10 +22,6 @@ const buildGraph = () => {
 };
 
 describe("Package", function () {
-  it("supports text", () => {
-    const text = new Text("content");
-  });
-
   it("supports element", () => {
     const elem = new DOMContent();
   });

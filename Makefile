@@ -10,7 +10,6 @@ SCRIPT_FILES = \
 	src/PaintedNode.ts \
 	src/BasicPainted.ts \
 	src/Pizza.ts \
-	src/Text.ts \
 	src/AbstractScene.ts \
 	src/demoDom.ts \
 	src/glsl.d.ts \
