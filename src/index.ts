@@ -28,7 +28,11 @@ import FreezerSlot from "./freezer/FreezerSlot";
 import FrozenNode from "./freezer/FrozenNode";
 import FrozenNodeFragment from "./freezer/FrozenNodeFragment";
 
-import DOMContent from "./DOMContent";
+import DOMContent, {ElementFunc,
+  DOMContentArtist,
+  DOMContentScene,
+  ContentEntry,
+} from "./DOMContent";
 
 export default Artist;
 export {
@@ -65,4 +69,8 @@ export {
   FrozenNode,
   Repaintable,
   DOMContent,
+  DOMContentArtist,
+  DOMContentScene,
+  ContentEntry,
+  ElementFunc
 };

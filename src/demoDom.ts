@@ -6,25 +6,28 @@ import Pizza from "./Pizza";
 import Camera from "parsegraph-camera";
 import { showInCamera } from "parsegraph-showincamera";
 import WorldTransform from "./WorldTransform";
-import {
-  makeScale3x3I,
-  makeTranslation3x3I,
-  matrixMultiply3x3I,
-  Matrix3x3,
-  matrixIdentity3x3,
-} from "parsegraph-matrix";
 
 const artist = new DOMContentArtist();
 
-const makeNode = (onUpdate: () => void): DirectionNode => {
+let COUNT = 0;
+const makeNode = (cam: Camera, onUpdate: () => void): DirectionNode => {
   const node = new DirectionNode();
-  const size = Math.ceil(36 * Math.random());
+  const size = 24//Math.ceil(36 * Math.random());
+  //co
   const val = new DOMContent(() => {
     const c = document.createElement("div");
     c.style.fontSize = size + "px";
     c.style.pointerEvents = "all";
-    c.innerText = "DOM";
+    c.innerText = "DOMCONTENT" + COUNT++;
     return c;
+  });
+  val.interact().setClickListener(() => {
+    console.log("CLICK");
+    const layout = node.value().getLayout();
+    cam.setScale(1/(node.state().scale()*layout.absoluteScale()));
+    cam.setOrigin(-layout.absoluteX() + cam.width() / 2, -layout.absoluteY() + cam.height() / 2);
+    onUpdate();
+    return true;
   });
   val.setArtist(artist);
   val.setNode(node);
@@ -33,19 +36,19 @@ const makeNode = (onUpdate: () => void): DirectionNode => {
   return node;
 };
 
-const buildGraph = (onUpdate: () => void) => {
-  const root = makeNode(onUpdate);
+const buildGraph = (cam: Camera, onUpdate: () => void) => {
+  const root = makeNode(cam, onUpdate);
   let par = root;
 
   const dirs = [
     Direction.FORWARD,
-    Direction.DOWNWARD,
-    Direction.INWARD,
-    Direction.UPWARD,
-    Direction.BACKWARD,
+    //Direction.DOWNWARD,
+    //Direction.INWARD,
+    //Direction.UPWARD,
+    //Direction.BACKWARD,
   ];
-  for (let i = 0; i < 20; ++i) {
-    const n = makeNode(onUpdate);
+  for (let i = 0; i < 3; ++i) {
+    const n = makeNode(cam, onUpdate);
     let dir = Direction.NULL;
     while (dir === Direction.NULL || par.hasNode(dir)) {
       dir = dirs[Math.floor(Math.random() * dirs.length)];
@@ -53,6 +56,7 @@ const buildGraph = (onUpdate: () => void) => {
     par.connectNode(dir, n);
     par.setNodeAlignmentMode(Direction.INWARD, Alignment.INWARD_VERTICAL);
     par.pull(dir);
+    par.state().setScale(0.85);
     par = n;
   }
   return root;
@@ -79,64 +83,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const onUpdate = () => {
     belt.scheduleUpdate();
     cam.setSize(proj.width(), proj.height());
-    showInCamera(rootNode, cam, false);
-    const layout = rootNode.value().getLayout();
-    const project = () => {
-      const world: Matrix3x3 = cam.project();
-
-      const scaleMat = matrixIdentity3x3();
-      const transMat = matrixIdentity3x3();
-      const worldMat = matrixIdentity3x3();
-      makeScale3x3I(scaleMat, layout.absoluteScale());
-      makeTranslation3x3I(transMat, layout.absoluteX(), layout.absoluteY());
-      matrixMultiply3x3I(worldMat, scaleMat, transMat);
-      matrixMultiply3x3I(worldMat, worldMat, world);
-      return world;
-    };
-    pizza.setWorldTransform(
-      new WorldTransform(
-        cam.canProject() ? project() : matrixIdentity3x3(),
-        cam.scale() * rootNode.state().scale(),
-        cam.width(),
-        cam.height(),
-        cam.x() + layout.absoluteX(),
-        cam.y() + layout.absoluteY()
-      )
-    );
-    if (cam && proj.hasOverlay()) {
-      const overlay = proj.overlay();
-      overlay.resetTransform();
-      overlay.clearRect(0, 0, proj.width(), proj.height());
-
-      overlay.scale(cam.scale(), cam.scale());
-      overlay.translate(
-        cam.x() + layout.absoluteX(),
-        cam.y() + layout.absoluteY()
-      );
-      overlay.scale(layout.absoluteScale(), layout.absoluteScale());
-    }
-    if (cam && proj.hasDOMContainer()) {
-      const camScale = `scale(${cam.scale()}, ${cam.scale()})`;
-      const translate = `translate(${cam.x() + layout.absoluteX()}px, ${
-        cam.y() + layout.absoluteY()
-      }px)`;
-      const nodeScale = `scale(${layout.absoluteScale()}, ${layout.absoluteScale()})`;
-      proj.getDOMContainer().style.transform = [
-        camScale,
-        translate,
-        nodeScale,
-      ].join(" ");
-    }
+    const world = WorldTransform.fromCamera(rootNode, cam);
+    pizza.setWorldTransform(world);
+    world.apply(proj, rootNode, cam.scale());
   };
 
   setTimeout(() => {
     proj.overlay();
     proj.render();
     belt.addRenderable(pizza);
+    cam.setSize(proj.width(), proj.height());
+    showInCamera(rootNode, cam, false);
   }, 0);
 
   const pizza = new Pizza(proj);
-  let rootNode = makeNode(onUpdate);
+  let rootNode = makeNode(cam, onUpdate);
   const toggle = () => {
     if (timer) {
       clearInterval(timer);
@@ -157,10 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
   pizza.populate(rootNode);
 
   const refresh = () => {
-    rootNode = buildGraph(onUpdate);
+    rootNode = buildGraph(cam, onUpdate);
     rootNode.value().interact().setClickListener(toggle);
     pizza.populate(rootNode);
-    belt.scheduleUpdate();
+    pizza.scheduleUpdate();
+    //showInCamera(rootNode, cam, false);
     const rand = () => Math.floor(Math.random() * 255);
     document.body.style.backgroundColor = `rgb(${rand()}, ${rand()}, ${rand()})`;
     container.style.color = `rgb(${rand()}, ${rand()}, ${rand()})`;
@@ -189,4 +151,42 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   const interval = 3000;
   const dotInterval = 500;
+
+  document.body.addEventListener("keydown", e=>{
+    const SPEED = 4;
+    switch(e.key) {
+      case "ArrowRight":
+        cam.adjustOrigin(-SPEED, 0);
+        break;
+      case "+":
+        cam.zoomToPoint(
+          1.1,
+          cam.width()/2,
+          cam.height()/2
+        );
+        break;
+      case "-":
+        cam.zoomToPoint(
+          0.9,
+          cam.width()/2,
+          cam.height()/2
+        );
+        break;
+      case "ArrowLeft":
+        cam.adjustOrigin(SPEED, 0);
+        break;
+      case "ArrowUp":
+        cam.adjustOrigin(0, SPEED);
+        break;
+      case "ArrowDown":
+        cam.adjustOrigin(0, -SPEED);
+        break;
+    }
+    const world = WorldTransform.fromCamera(rootNode, cam);
+    pizza.setWorldTransform(world);
+    proj.overlay().resetTransform();
+    proj.overlay().clearRect(0, 0, proj.width(), proj.height());
+    world.apply(proj, rootNode, cam.scale());
+    belt.scheduleUpdate();
+  });
 });
