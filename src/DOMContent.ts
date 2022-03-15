@@ -11,6 +11,7 @@ import paintNodeLines from "./paintNodeLines";
 import paintNodeBounds from "./paintNodeBounds";
 import PaintedNode from "./PaintedNode";
 import Color from 'parsegraph-color';
+import DOMPainter from "./DOMPainter";
 
 const LINE_COLOR = new Color(0, 0, 0, 1);
 const BACKGROUND_COLOR = new Color(1, 1, 1, .25);
@@ -21,33 +22,14 @@ export type ContentEntry = [()=>HTMLElement, HTMLElement, PaintedNode];
 const innerSize = new Size();
 export class DOMContentScene extends AbstractScene {
   _elems: NodeValues<DOMContent>;
-  _worldElement: HTMLDivElement;
   _created: ContentEntry[];
+  _painter: DOMPainter;
 
   constructor(projector: Projector, elems: NodeValues<DOMContent>) {
     super(projector);
     this._elems = elems;
-    this._worldElement = null;
     this._created = [];
-  }
-
-  getWorldElement(): HTMLElement {
-    if (!this.projector().getDOMContainer()) {
-      return null;
-    }
-    if (!this._worldElement) {
-      const worldEle = document.createElement("div");
-      worldEle.className = "world";
-      worldEle.style.transformOrigin = "top left";
-      worldEle.style.position = "relative";
-      worldEle.style.pointerEvents = "none";
-      this._worldElement = worldEle;
-    }
-    return this._worldElement;
-  }
-
-  hasWorldElement() {
-    return !!this._worldElement;
+    this._painter = new DOMPainter(projector);
   }
 
   private createContent(node: PaintedNode) {
@@ -95,26 +77,13 @@ export class DOMContentScene extends AbstractScene {
   }
 
   paint() {
-    if (this.hasWorldElement()) {
-      this.getWorldElement().remove();
-    }
-    this._worldElement = null;
-    this.projector().getDOMContainer().appendChild(this.getWorldElement());
-    this.projector().getDOMContainer().style.overflow = "initial";
+    this._painter.reset();
 
     this._elems.forEach((node, i) => {
       const elem = this.getContent(node, i);
-      if (elem.parentNode !== this.getWorldElement()) {
-        elem.remove();
-        this.getWorldElement().appendChild(elem);
-      }
       node.value().measure(innerSize);
       const [x, y, absScale] = computeInnerPos(node, innerSize);
-      const posTranslate = `translate(${x}px, ${y}px)`;
-      const nodeScale = `scale(${absScale}, ${absScale})`;
-      const halfSize = `translate(-${innerSize.width()/2}px, -${innerSize.height()/2}px)`;
-      const newTransform = [posTranslate, halfSize, nodeScale].join(" ");
-      elem.style.transform = newTransform;
+      this._painter.drawElem(elem, innerSize, x, y, absScale);
     });
     return false;
   }
@@ -147,16 +116,11 @@ export class DOMContentScene extends AbstractScene {
     if (!world) {
       return;
     }
-    const tx = [
-      `translate(${world.x()}px, ${world.y()}px)`,
-      `scale(${world.scale()})`].join(" ")
-    this.getWorldElement().style.transform = tx;
+    this._painter.setWorldTransform(world);
   }
 
   unmount() {
-    if (this._worldElement) {
-      this._worldElement.remove();
-    }
+    this._painter.unmount();
     this._created.forEach((val)=>{
       val[1] && val[1].remove();
     });

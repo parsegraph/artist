@@ -11,6 +11,7 @@ SCRIPT_FILES = \
 	src/Pizza.ts \
 	src/demoDom.ts \
 	src/glsl.d.ts \
+	src/DOMPainter.ts \
 	src/DOMContent.ts \
 	src/freezer/FreezerCache.ts \
 	src/freezer/Freezable.ts \

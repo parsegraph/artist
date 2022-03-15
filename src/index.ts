@@ -28,6 +28,8 @@ import FrozenNode from "./freezer/FrozenNode";
 import FrozenNodeFragment from "./freezer/FrozenNodeFragment";
 import computeInnerPos from "./computeInnerPos";
 
+import DOMPainter from "./DOMPainter";
+
 import DOMContent, {ElementFunc,
   DOMContentArtist,
   DOMContentScene,
@@ -67,6 +69,7 @@ export {
   FreezerSlice,
   FrozenNodeFragment,
   FrozenNode,
+  DOMPainter,
   DOMContent,
   DOMContentArtist,
   DOMContentScene,
