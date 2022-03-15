@@ -26,7 +26,6 @@ SCRIPT_FILES = \
 	src/PaintedCaret.ts \
 	src/NodeValues.ts \
 	src/WorldTransform.ts \
-	src/Repaintable.ts \
 	src/RenderArtist.ts \
 	src/demo.ts \
 	test/test.ts
