@@ -17,6 +17,10 @@ export default abstract class AbstractScene implements WorldRenderable {
   }
 
   markDirty() {
+    this.scheduleUpdate();
+  }
+
+  protected scheduleUpdate() {
     this._onUpdate.call();
   }
 
