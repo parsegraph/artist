@@ -10,6 +10,11 @@ import computeInnerPos from "./computeInnerPos";
 import paintNodeLines from "./paintNodeLines";
 import paintNodeBounds from "./paintNodeBounds";
 import PaintedNode from "./PaintedNode";
+import Color from 'parsegraph-color';
+
+const LINE_COLOR = new Color(0, 0, 0, 1);
+const BACKGROUND_COLOR = new Color(1, 1, 1, .25);
+const LINE_THICKNESS = 1;
 
 export type ContentEntry = [()=>HTMLElement, HTMLElement, PaintedNode];
 
@@ -117,15 +122,19 @@ export class DOMContentScene extends AbstractScene {
   render() {
     const ctx = this.projector().overlay();
     this._elems.forEach(node=>{
-      ctx.fillStyle = "black";
-      const scale = 1;//node.value().getLayout().groupScale();
-      paintNodeLines(node, 1, (x, y, w, h)=>{
-        ctx.fillRect(x - scale*w/2, y - scale*h/2, scale*w, scale*h);
-      });
-      ctx.fillStyle = "rgb(1, 1, 1, .25)";
-      paintNodeBounds(node, (x, y, w, h)=>{
-        ctx.fillRect(x - scale*w/2, y - scale*h/2, scale*w, scale*h);
-      });
+      const content = node.value();
+      if (content.lineColor() && content.lineThickness() > 0) {
+        ctx.fillStyle = content.lineColor().asRGBA();
+        paintNodeLines(node, content.lineThickness(), (x, y, w, h)=>{
+          ctx.fillRect(x - w/2, y - h/2, w, h);
+        });
+      }
+      if (content.backgroundColor()) {
+        ctx.fillStyle = content.backgroundColor().asRGBA();
+        paintNodeBounds(node, (x, y, w, h)=>{
+          ctx.fillRect(x - w/2, y - h/2, w, h);
+        });
+      }
     });
     return false;
   }
@@ -171,12 +180,18 @@ export type ElementFunc = () => HTMLElement;
 export default class DOMContent extends BasicPainted<DOMContent> {
   _creator: ElementFunc;
   _size: Size;
+  _lineThickness: number;
+  _lineColor: Color;
+  _bgColor: Color;
 
   constructor(creator?: ElementFunc) {
     super();
     this._creator = creator;
     this.setArtist(new DOMContentArtist());
     this.clearSize();
+    this._lineColor = LINE_COLOR;
+    this._lineThickness = LINE_THICKNESS;
+    this._bgColor = BACKGROUND_COLOR;
   }
 
   getCreator() {
@@ -185,6 +200,33 @@ export default class DOMContent extends BasicPainted<DOMContent> {
 
   create() {
     return this._creator();
+  }
+
+  lineThickness() {
+    return this._lineThickness;
+  }
+
+  setLineThickness(thickness: number) {
+    this._lineThickness = thickness;
+    this.scheduleRepaint();
+  }
+
+  setLineColor(color: Color) {
+    this._lineColor = color;
+    this.scheduleRepaint();
+  }
+
+  lineColor() {
+    return this._lineColor;
+  }
+
+  backgroundColor() {
+    return this._bgColor;
+  }
+
+  setBackgroundColor(color: Color) {
+    this._bgColor = color;
+    this.scheduleRepaint();
   }
 
   setCreator(creator: ElementFunc): void {
