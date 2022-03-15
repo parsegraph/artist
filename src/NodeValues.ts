@@ -35,10 +35,10 @@ export default class NodeValues<Value = any> {
     };
   }
 
-  forEach(cb: (val: DirectionNode<Value>) => void) {
+  forEach(cb: (val: DirectionNode<Value>, i: number) => void) {
     let n = this._root;
     for (let i = 0; i < this._length; ++i) {
-      cb(n);
+      cb(n, i);
       n = n.siblings().prev() as DirectionNode<Value>;
     }
   }
