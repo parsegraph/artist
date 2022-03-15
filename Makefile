@@ -5,12 +5,10 @@ SCRIPT_FILES = \
 	src/Painted.ts \
 	src/index.ts \
 	src/paintNodeLines.ts \
-	src/Transformed.ts \
 	src/Artist.ts \
 	src/PaintedNode.ts \
 	src/BasicPainted.ts \
 	src/Pizza.ts \
-	src/AbstractScene.ts \
 	src/demoDom.ts \
 	src/glsl.d.ts \
 	src/DOMContent.ts \
@@ -24,7 +22,6 @@ SCRIPT_FILES = \
 	src/freezer/FreezerSlice.ts \
 	src/PaintedCaret.ts \
 	src/NodeValues.ts \
-	src/WorldTransform.ts \
 	src/RenderArtist.ts \
 	src/demo.ts \
 	test/test.ts

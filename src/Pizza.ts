@@ -1,5 +1,5 @@
-import Artist, { WorldRenderable } from "./Artist";
-import WorldTransform from "./WorldTransform";
+import Artist from "./Artist";
+import { WorldTransform, WorldRenderable } from "parsegraph-scene";
 import NodeValues from "./NodeValues";
 import Method from "parsegraph-method";
 import { Projector, SharedProjector } from "parsegraph-projector";

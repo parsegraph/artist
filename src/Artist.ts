@@ -1,9 +1,6 @@
 import { Projector } from "parsegraph-projector";
-import { Renderable } from "parsegraph-timingbelt";
 import NodeValues from "./NodeValues";
-import Transformed from "./Transformed";
-
-export type WorldRenderable = Renderable & Transformed;
+import {WorldRenderable} from "parsegraph-scene";
 
 export default interface Artist<
   Model = {},
