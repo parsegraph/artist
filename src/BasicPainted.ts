@@ -132,6 +132,7 @@ export default class BasicPainted<Model extends Painted<Model> = Painted>
     if (this.node()) {
       this.node().layoutChanged();
     }
+    this.scheduleRepaint();
   }
 
   protected scheduleRepaint() {
