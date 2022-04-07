@@ -13,11 +13,7 @@ const computeInnerPos = (
   const y = layout.groupY();
   const absScale = node.state().scale() * layout.groupScale();
   if (!node.hasNode(Direction.INWARD)) {
-    return [
-      x,
-      y,
-      absScale,
-    ];
+    return [x, y, absScale];
   }
 
   const innerScale = node.nodeAt(Direction.INWARD).state().scale();

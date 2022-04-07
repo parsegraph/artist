@@ -12,8 +12,8 @@ const artist = new DOMContentArtist();
 let COUNT = 0;
 const makeNode = (cam: Camera, onUpdate: () => void): DirectionNode => {
   const node = new DirectionNode();
-  const size = 24//Math.ceil(36 * Math.random());
-  //co
+  const size = 24; // Math.ceil(36 * Math.random());
+  // co
   const val = new DOMContent(() => {
     const c = document.createElement("div");
     c.style.fontSize = size + "px";
@@ -24,8 +24,11 @@ const makeNode = (cam: Camera, onUpdate: () => void): DirectionNode => {
   val.interact().setClickListener(() => {
     console.log("CLICK");
     const layout = node.value().getLayout();
-    cam.setScale(1/(node.state().scale()*layout.absoluteScale()));
-    cam.setOrigin(-layout.absoluteX() + cam.width() / 2, -layout.absoluteY() + cam.height() / 2);
+    cam.setScale(1 / (node.state().scale() * layout.absoluteScale()));
+    cam.setOrigin(
+      -layout.absoluteX() + cam.width() / 2,
+      -layout.absoluteY() + cam.height() / 2
+    );
     onUpdate();
     return true;
   });
@@ -42,10 +45,10 @@ const buildGraph = (cam: Camera, onUpdate: () => void) => {
 
   const dirs = [
     Direction.FORWARD,
-    //Direction.DOWNWARD,
-    //Direction.INWARD,
-    //Direction.UPWARD,
-    //Direction.BACKWARD,
+    // Direction.DOWNWARD,
+    // Direction.INWARD,
+    // Direction.UPWARD,
+    // Direction.BACKWARD,
   ];
   for (let i = 0; i < 3; ++i) {
     const n = makeNode(cam, onUpdate);
@@ -122,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rootNode.value().interact().setClickListener(toggle);
     pizza.populate(rootNode);
     pizza.scheduleUpdate();
-    //showInCamera(rootNode, cam, false);
+    // showInCamera(rootNode, cam, false);
     const rand = () => Math.floor(Math.random() * 255);
     document.body.style.backgroundColor = `rgb(${rand()}, ${rand()}, ${rand()})`;
     container.style.color = `rgb(${rand()}, ${rand()}, ${rand()})`;
@@ -152,25 +155,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const interval = 3000;
   const dotInterval = 500;
 
-  document.body.addEventListener("keydown", e=>{
+  document.body.addEventListener("keydown", (e) => {
     const SPEED = 4;
-    switch(e.key) {
+    switch (e.key) {
       case "ArrowRight":
         cam.adjustOrigin(-SPEED, 0);
         break;
       case "+":
-        cam.zoomToPoint(
-          1.1,
-          cam.width()/2,
-          cam.height()/2
-        );
+        cam.zoomToPoint(1.1, cam.width() / 2, cam.height() / 2);
         break;
       case "-":
-        cam.zoomToPoint(
-          0.9,
-          cam.width()/2,
-          cam.height()/2
-        );
+        cam.zoomToPoint(0.9, cam.width() / 2, cam.height() / 2);
         break;
       case "ArrowLeft":
         cam.adjustOrigin(SPEED, 0);

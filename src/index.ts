@@ -30,7 +30,8 @@ import computeInnerPos from "./computeInnerPos";
 
 import DOMPainter from "./DOMPainter";
 
-import DOMContent, {ElementFunc,
+import DOMContent, {
+  ElementFunc,
   DOMContentArtist,
   DOMContentScene,
   ContentEntry,
@@ -75,5 +76,5 @@ export {
   DOMContentScene,
   ContentEntry,
   ElementFunc,
-  computeInnerPos
+  computeInnerPos,
 };

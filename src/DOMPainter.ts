@@ -41,14 +41,22 @@ export default class DOMPainter extends AbstractScene {
     this.projector().getDOMContainer().style.overflow = "initial";
   }
 
-  drawElem(elem: HTMLElement, innerSize: Size, x: number, y:number, absScale:number) {
+  drawElem(
+    elem: HTMLElement,
+    innerSize: Size,
+    x: number,
+    y: number,
+    absScale: number
+  ) {
     if (elem.parentNode !== this.getWorldElement()) {
       elem.remove();
       this.getWorldElement().appendChild(elem);
     }
     const posTranslate = `translate(${x}px, ${y}px)`;
     const nodeScale = `scale(${absScale}, ${absScale})`;
-    const halfSize = `translate(-${innerSize.width()/2}px, -${innerSize.height()/2}px)`;
+    const halfSize = `translate(-${innerSize.width() / 2}px, -${
+      innerSize.height() / 2
+    }px)`;
     const newTransform = [posTranslate, halfSize, nodeScale].join(" ");
     elem.style.transform = newTransform;
   }
@@ -63,7 +71,8 @@ export default class DOMPainter extends AbstractScene {
     }
     const tx = [
       `translate(${world.x()}px, ${world.y()}px)`,
-      `scale(${world.scale()})`].join(" ")
+      `scale(${world.scale()})`,
+    ].join(" ");
     this.getWorldElement().style.transform = tx;
   }
 

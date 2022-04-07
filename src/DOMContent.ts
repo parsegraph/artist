@@ -10,14 +10,14 @@ import computeInnerPos from "./computeInnerPos";
 import paintNodeLines from "./paintNodeLines";
 import paintNodeBounds from "./paintNodeBounds";
 import PaintedNode from "./PaintedNode";
-import Color from 'parsegraph-color';
+import Color from "parsegraph-color";
 import DOMPainter from "./DOMPainter";
 
 const LINE_COLOR = new Color(0, 0, 0, 1);
-const BACKGROUND_COLOR = new Color(1, 1, 1, .25);
+const BACKGROUND_COLOR = new Color(1, 1, 1, 0.25);
 const LINE_THICKNESS = 1;
 
-export type ContentEntry = [()=>HTMLElement, HTMLElement, PaintedNode];
+export type ContentEntry = [() => HTMLElement, HTMLElement, PaintedNode];
 
 const innerSize = new Size();
 export class DOMContentScene extends AbstractScene {
@@ -56,7 +56,7 @@ export class DOMContentScene extends AbstractScene {
     return elem;
   }
 
-  getContent(node: PaintedNode, i: number):HTMLElement {
+  getContent(node: PaintedNode, i: number): HTMLElement {
     const creator = node.value().getCreator();
     if (i >= 0 && i < this._created.length) {
       const saved = this._created[i];
@@ -67,7 +67,7 @@ export class DOMContentScene extends AbstractScene {
         saved[1].remove();
       }
     }
-    const entry:ContentEntry = [creator, this.createContent(node), node];
+    const entry: ContentEntry = [creator, this.createContent(node), node];
     if (i < this._created.length) {
       this._created[i] = entry;
     } else {
@@ -90,18 +90,18 @@ export class DOMContentScene extends AbstractScene {
 
   render() {
     const ctx = this.projector().overlay();
-    this._elems.forEach(node=>{
+    this._elems.forEach((node) => {
       const content = node.value();
       if (content.lineColor() && content.lineThickness() > 0) {
         ctx.fillStyle = content.lineColor().asRGBA();
-        paintNodeLines(node, content.lineThickness(), (x, y, w, h)=>{
-          ctx.fillRect(x - w/2, y - h/2, w, h);
+        paintNodeLines(node, content.lineThickness(), (x, y, w, h) => {
+          ctx.fillRect(x - w / 2, y - h / 2, w, h);
         });
       }
       if (content.backgroundColor()) {
         ctx.fillStyle = content.backgroundColor().asRGBA();
-        paintNodeBounds(node, (x, y, w, h)=>{
-          ctx.fillRect(x - w/2, y - h/2, w, h);
+        paintNodeBounds(node, (x, y, w, h) => {
+          ctx.fillRect(x - w / 2, y - h / 2, w, h);
         });
       }
     });
@@ -121,7 +121,7 @@ export class DOMContentScene extends AbstractScene {
 
   unmount() {
     this._painter.unmount();
-    this._created.forEach((val)=>{
+    this._created.forEach((val) => {
       val[1] && val[1].remove();
     });
     this._created = [];
