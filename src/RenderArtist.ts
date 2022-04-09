@@ -2,7 +2,7 @@ import { DirectionNode } from "parsegraph-direction";
 import { Projector } from "parsegraph-projector";
 import NodeValues from "./NodeValues";
 import Artist from "./Artist";
-import AbstractScene from "./AbstractScene";
+import {AbstractScene} from "parsegraph-scene";
 
 export type RenderFunc<Model> = (
   projector: Projector,

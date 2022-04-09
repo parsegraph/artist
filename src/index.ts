@@ -1,7 +1,5 @@
 import NodeValues from "./NodeValues";
-import Artist, { WorldRenderable } from "./Artist";
-import Transformed from "./Transformed";
-import WorldTransform from "./WorldTransform";
+import Artist from "./Artist";
 import Painted from "./Painted";
 import PaintedNode from "./PaintedNode";
 import PaintedCaret from "./PaintedCaret";
@@ -15,7 +13,6 @@ import BasicPainted, {
   HORIZONTAL_SEPARATION_PADDING,
   VERTICAL_SEPARATION_PADDING,
 } from "./BasicPainted";
-import AbstractScene from "./AbstractScene";
 import RenderArtist, { RenderScene, RenderFunc } from "./RenderArtist";
 
 import Freezable from "./freezer/Freezable";
@@ -48,15 +45,11 @@ export {
   MIN_BLOCK_WIDTH,
   HORIZONTAL_SEPARATION_PADDING,
   VERTICAL_SEPARATION_PADDING,
-  AbstractScene,
   Pizza,
   paintNodeLines,
   paintNodeBounds,
   LinePainter,
-  WorldRenderable,
   NodeValues,
-  Transformed,
-  WorldTransform,
   Painted,
   PaintedNode,
   PaintedCaret,

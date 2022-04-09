@@ -1,6 +1,6 @@
 import { DirectionNode } from "parsegraph-direction";
 import Painted from "./Painted";
-import { WorldRenderable } from "./Artist";
+import { WorldRenderable } from "parsegraph-scene";
 
 type PaintedNode<
   Model extends Painted<Model, View> = any,

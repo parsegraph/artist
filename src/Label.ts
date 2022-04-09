@@ -4,21 +4,30 @@ import Artist from "./Artist";
 import {Projector } from "parsegraph-projector";
 import NodeValues from "./NodeValues";
 import Size from 'parsegraph-size';
-import AbstractScene from "./AbstractScene";
+import {AbstractScene} from "parsegraph-scene";
 
 class LabelScene extends AbstractScene {
+  _labels: NodeValues<Label>;
 
-  constructor(
+  constructor(projector: Projector, seq: NodeValues<Label>) {
+    super(projector);
+    this._labels = seq;
+  }
 
+  setLabels(seq: NodeValues<Label>) {
+    this._labels = seq;
+    this.scheduleUpdate();
+  }
 }
 
 class LabelArtist implements Artist<Label> {
-  patch() {
-    return false;
+  patch(scene: LabelScene, seq:NodeValues<Label>) {
+    scene.setLabels(seq);
+    return true;
   }
 
   make(projector:Projector, seq:NodeValues<Label>) {
-
+    return new LabelScene(projector, seq);
   }
 }
 

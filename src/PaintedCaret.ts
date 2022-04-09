@@ -7,12 +7,12 @@ import Freezer from "./freezer/Freezer";
 import { EventListener, FocusListener, KeyListener } from "parsegraph-interact";
 import Painted from "./Painted";
 import { Renderable } from "parsegraph-timingbelt";
-import Transformed from "./Transformed";
+import { Transformed } from "parsegraph-scene";
 
 export default class PaintedCaret<
   Model extends Painted<Model, View>,
   View extends Renderable & Transformed = Renderable & Transformed
-> extends DirectionCaret<Painted<Model, View>> {
+> extends DirectionCaret<Model> {
   _freezer: Freezer;
 
   clone(): PaintedCaret<Model, View> {

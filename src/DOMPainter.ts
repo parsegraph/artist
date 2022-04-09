@@ -1,6 +1,5 @@
 import { Projector } from "parsegraph-projector";
-import WorldTransform from "./WorldTransform";
-import AbstractScene from "./AbstractScene";
+import {WorldTransform, AbstractScene} from "parsegraph-scene";
 import Size from "parsegraph-size";
 
 export default class DOMPainter extends AbstractScene {
