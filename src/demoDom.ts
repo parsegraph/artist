@@ -5,7 +5,7 @@ import TimingBelt from "parsegraph-timingbelt";
 import Pizza from "./Pizza";
 import Camera from "parsegraph-camera";
 import { showInCamera } from "parsegraph-showincamera";
-import {WorldTransform} from "parsegraph-scene";
+import { WorldTransform } from "parsegraph-scene";
 
 const artist = new DOMContentArtist();
 

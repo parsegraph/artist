@@ -1,6 +1,6 @@
 import { Positioned } from "parsegraph-layout";
 import Artist from "./Artist";
-import {WorldRenderable} from 'parsegraph-scene';
+import { WorldRenderable } from "parsegraph-scene";
 import Freezable from "./freezer/Freezable";
 import { Interactive } from "parsegraph-interact";
 
