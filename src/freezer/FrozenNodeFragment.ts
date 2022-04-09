@@ -2,8 +2,7 @@ import FrozenNode from "./FrozenNode";
 import FreezerSlot from "./FreezerSlot";
 import { Matrix3x3 } from "parsegraph-matrix";
 import log, { logEnter, logLeave } from "parsegraph-log";
-import WorldTransform from "../WorldTransform";
-import { WorldRenderable } from "../Artist";
+import { WorldTransform, WorldRenderable } from "parsegraph-scene";
 
 export default class FrozenNodeFragment {
   _width: number;

@@ -4,7 +4,7 @@ import Artist from "./Artist";
 import BasicPainted from "./BasicPainted";
 import NodeValues from "./NodeValues";
 import { MIN_BLOCK_HEIGHT, MIN_BLOCK_WIDTH } from "./BasicPainted";
-import {AbstractScene, WorldTransform} from "parsegraph-scene";
+import { AbstractScene, WorldTransform } from "parsegraph-scene";
 import computeInnerPos from "./computeInnerPos";
 import paintNodeLines from "./paintNodeLines";
 import paintNodeBounds from "./paintNodeBounds";

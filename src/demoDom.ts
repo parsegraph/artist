@@ -5,7 +5,7 @@ import TimingBelt from "parsegraph-timingbelt";
 import Pizza from "./Pizza";
 import Camera from "parsegraph-camera";
 import { showInCamera } from "parsegraph-showincamera";
-import WorldTransform from "./WorldTransform";
+import {WorldTransform} from "parsegraph-scene";
 
 const artist = new DOMContentArtist();
 
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cam.setSize(proj.width(), proj.height());
     const world = WorldTransform.fromCamera(rootNode, cam);
     pizza.setWorldTransform(world);
-    world.apply(proj, rootNode, cam.scale());
+    world.applyTransform(proj, rootNode, cam.scale());
   };
 
   setTimeout(() => {
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pizza.setWorldTransform(world);
     proj.overlay().resetTransform();
     proj.overlay().clearRect(0, 0, proj.width(), proj.height());
-    world.apply(proj, rootNode, cam.scale());
+    world.applyTransform(proj, rootNode, cam.scale());
     belt.scheduleUpdate();
   });
 });

@@ -4,7 +4,7 @@ import FrozenNodeFragment from "./FrozenNodeFragment";
 import { Projector } from "parsegraph-projector";
 import { Matrix3x3 } from "parsegraph-matrix";
 import log from "parsegraph-log";
-import { WorldRenderable } from "../Artist";
+import { WorldRenderable } from "parsegraph-scene";
 import { paintGroupBounds } from "parsegraph-layout";
 
 export default class FrozenNode {

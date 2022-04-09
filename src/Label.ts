@@ -1,10 +1,10 @@
 import PaintedNode from "./PaintedNode";
 import BasicPainted from "./BasicPainted";
 import Artist from "./Artist";
-import {Projector } from "parsegraph-projector";
+import { Projector } from "parsegraph-projector";
 import NodeValues from "./NodeValues";
-import Size from 'parsegraph-size';
-import {AbstractScene} from "parsegraph-scene";
+import Size from "parsegraph-size";
+import { AbstractScene } from "parsegraph-scene";
 
 class LabelScene extends AbstractScene {
   _labels: NodeValues<Label>;
@@ -21,12 +21,12 @@ class LabelScene extends AbstractScene {
 }
 
 class LabelArtist implements Artist<Label> {
-  patch(scene: LabelScene, seq:NodeValues<Label>) {
+  patch(scene: LabelScene, seq: NodeValues<Label>) {
     scene.setLabels(seq);
     return true;
   }
 
-  make(projector:Projector, seq:NodeValues<Label>) {
+  make(projector: Projector, seq: NodeValues<Label>) {
     return new LabelScene(projector, seq);
   }
 }
