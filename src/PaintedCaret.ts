@@ -37,6 +37,10 @@ export default class PaintedCaret<
     this._freezer = freezer;
   }
 
+  freezer() {
+    return this._freezer;
+  }
+
   freeze(inDirection?: Direction | string): void {
     // Interpret the given direction for ease-of-use.
     inDirection = readDirection(inDirection);
