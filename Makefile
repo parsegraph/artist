@@ -11,7 +11,7 @@ SCRIPT_FILES = \
 	src/Pizza.ts \
 	src/demoDom.ts \
 	src/glsl.d.ts \
-	src/DOMPainter.ts \
+	src/computeInnerPos.ts \
 	src/DOMContent.ts \
 	src/freezer/FreezerCache.ts \
 	src/freezer/Freezable.ts \
@@ -23,6 +23,8 @@ SCRIPT_FILES = \
 	src/freezer/FreezerSlice.ts \
 	src/PaintedCaret.ts \
 	src/NodeValues.ts \
+	src/Label.ts \
+	src/DOMPainter.ts \
 	src/RenderArtist.ts \
 	src/demo.ts \
 	test/test.ts
