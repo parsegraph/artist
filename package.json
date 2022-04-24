@@ -51,9 +51,9 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "parsegraph-camera": "^1.4.11",
+    "parsegraph-camera": "^1.4.13",
     "parsegraph-color": "^1.4.7",
-    "parsegraph-compileprogram": "^2.2.9",
+    "parsegraph-compileprogram": "^2.2.10",
     "parsegraph-direction": "^2.1.0",
     "parsegraph-interact": "^1.6.6",
     "parsegraph-layout": "^1.13.2",
