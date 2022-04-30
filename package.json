@@ -60,7 +60,7 @@
     "parsegraph-matrix": "^1.4.12",
     "parsegraph-method": "^1.4.22",
     "parsegraph-projector": "^1.14.0",
-    "parsegraph-scene": "^2.2.20",
+    "parsegraph-scene": "^2.2.22",
     "parsegraph-showincamera": "^1.7.4",
     "parsegraph-size": "^1.7.1",
     "parsegraph-timing": "^1.4.16",
