@@ -55,7 +55,7 @@
     "parsegraph-color": "^1.4.7",
     "parsegraph-compileprogram": "^2.2.15",
     "parsegraph-direction": "^2.1.0",
-    "parsegraph-interact": "^1.6.10",
+    "parsegraph-interact": "^1.6.11",
     "parsegraph-layout": "^1.13.6",
     "parsegraph-matrix": "^1.4.12",
     "parsegraph-method": "^1.4.22",
