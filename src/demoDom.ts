@@ -109,9 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
       case "ArrowRight":
         cam.adjustOrigin(-SPEED, 0);
         break;
+      case "=":
       case "+":
         cam.zoomToPoint(1.1, cam.width() / 2, cam.height() / 2);
         break;
+      case "_":
       case "-":
         cam.zoomToPoint(0.9, cam.width() / 2, cam.height() / 2);
         break;
