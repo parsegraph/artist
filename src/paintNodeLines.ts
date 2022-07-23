@@ -32,8 +32,7 @@ const drawLine = (
     );
   }
 
-  const thickness =
-    lineThickness * scale * directionData.getNode().state().scale();
+  const thickness = lineThickness * scale;
   const x = layout.groupX();
   const y = layout.groupY();
   const size = node.value().size();

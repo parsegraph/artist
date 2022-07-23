@@ -69,8 +69,8 @@ export default class DOMPainter extends AbstractScene {
       return;
     }
     const tx = [
-      `translate(${world.x()}px, ${world.y()}px)`,
       `scale(${world.scale()})`,
+      `translate(${world.x()}px, ${world.y()}px)`,
     ].join(" ");
     this.getWorldElement().style.transform = tx;
   }
