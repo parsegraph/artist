@@ -22,12 +22,12 @@ const makeNode = (cam: Camera, onUpdate: () => void): DirectionNode => {
     return c;
   });
   val.interact().setClickListener(() => {
-    console.log("CLICK");
     const layout = node.value().getLayout();
-    cam.setScale(1 / (node.state().scale() * layout.absoluteScale()));
+    console.log(layout.absoluteScale(), node.state().scale())
+    cam.setScale(1 / layout.absoluteScale());
     cam.setOrigin(
-      -layout.absoluteX() + cam.width() / 2,
-      -layout.absoluteY() + cam.height() / 2
+      -layout.absoluteX() + (cam.width() / 2)/cam.scale(),
+      -layout.absoluteY() + (cam.height() / 2)/cam.scale()
     );
     onUpdate();
     return true;
@@ -50,7 +50,7 @@ const buildGraph = (cam: Camera, onUpdate: () => void) => {
     // Direction.UPWARD,
     // Direction.BACKWARD,
   ];
-  for (let i = 0; i < 3; ++i) {
+  for (let i = 0; i < 10; ++i) {
     const n = makeNode(cam, onUpdate);
     let dir = Direction.NULL;
     while (dir === Direction.NULL || par.hasNode(dir)) {
@@ -87,8 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
     belt.scheduleUpdate();
     cam.setSize(proj.width(), proj.height());
     const world = WorldTransform.fromCamera(rootNode, cam);
+    proj.overlay().resetTransform()
+    proj.overlay().clearRect(0, 0, proj.width(), proj.height())
     pizza.setWorldTransform(world);
-    world.applyTransform(proj, rootNode, cam.scale());
   };
 
   setTimeout(() => {
