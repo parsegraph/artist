@@ -116,6 +116,11 @@ export class DOMContentScene extends AbstractScene {
       return;
     }
     this._painter.setWorldTransform(world);
+    const proj = this.projector()
+    const ctx = proj.overlay();
+    ctx.resetTransform();
+    ctx.scale(world.scale(), world.scale());
+    ctx.translate(world.x(), world.y())
   }
 
   unmount() {
