@@ -34,8 +34,9 @@ export class DOMContentScene extends AbstractScene {
 
   private createContent(node: PaintedNode) {
     const elem = node.value().create();
+    const nodeVal = node.value();
     new ResizeObserver(() => {
-      node.value().reportSize(elem.offsetWidth, elem.offsetHeight);
+      nodeVal.reportSize(elem.offsetWidth, elem.offsetHeight);
     }).observe(elem);
 
     elem.addEventListener("click", () => {
