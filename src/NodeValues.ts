@@ -42,4 +42,12 @@ export default class NodeValues<Value = any> {
       n = n.siblings().prev() as DirectionNode<Value>;
     }
   }
+
+  map<T>(cb: (val: DirectionNode<Value>, i: number) => T): T[] {
+    const rv: T[] = [];
+    this.forEach((val, i) => {
+      rv.push(cb(val, i));
+    });
+    return rv;
+  }
 }

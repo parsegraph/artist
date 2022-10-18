@@ -76,14 +76,23 @@ export class DOMContentScene extends AbstractScene {
   }
 
   paint() {
-    this._painter.reset();
+    const lastContents: HTMLElement[] = [];
+    this._elems.forEach((node, i) => {
+      lastContents.push(this.getContent(node, i));
+    });
 
     this._elems.forEach((node, i) => {
       const elem = this.getContent(node, i);
+      const lastIndex = lastContents.indexOf(elem);
+      if (lastIndex >= 0) {
+        lastContents.splice(lastIndex, 1);
+      }
       node.value().measure(innerSize);
       const [x, y, absScale] = computeInnerPos(node, innerSize);
       this._painter.drawElem(elem, innerSize, x, y, absScale);
     });
+
+    lastContents.forEach((elem) => elem.remove());
     return false;
   }
 
@@ -116,11 +125,11 @@ export class DOMContentScene extends AbstractScene {
       return;
     }
     this._painter.setWorldTransform(world);
-    const proj = this.projector()
+    const proj = this.projector();
     const ctx = proj.overlay();
     ctx.resetTransform();
     ctx.scale(world.scale(), world.scale());
-    ctx.translate(world.x(), world.y())
+    ctx.translate(world.x(), world.y());
   }
 
   unmount() {

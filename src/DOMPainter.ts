@@ -2,6 +2,10 @@ import { Projector } from "parsegraph-projector";
 import { WorldTransform, AbstractScene } from "parsegraph-scene";
 import Size from "parsegraph-size";
 
+const lazySetTransform = (elem: HTMLElement, tx: string) => {
+  elem.style.transform = tx;
+};
+
 export default class DOMPainter extends AbstractScene {
   _worldElement: HTMLDivElement;
   _elems: HTMLElement[];
@@ -32,12 +36,11 @@ export default class DOMPainter extends AbstractScene {
   }
 
   reset() {
+    console.log(new Error("Resetting"));
     if (this.hasWorldElement()) {
       this.getWorldElement().remove();
     }
     this._worldElement = null;
-    this.projector().getDOMContainer().appendChild(this.getWorldElement());
-    this.projector().getDOMContainer().style.overflow = "initial";
   }
 
   drawElem(
@@ -47,6 +50,10 @@ export default class DOMPainter extends AbstractScene {
     y: number,
     absScale: number
   ) {
+    if (!this.hasWorldElement() || this.getWorldElement().parentNode !== this.projector().getDOMContainer()) {
+      this.projector().getDOMContainer().appendChild(this.getWorldElement());
+      this.projector().getDOMContainer().style.overflow = "initial";
+    }
     if (elem.parentNode !== this.getWorldElement()) {
       elem.remove();
       this.getWorldElement().appendChild(elem);
@@ -57,7 +64,7 @@ export default class DOMPainter extends AbstractScene {
       innerSize.height() / 2
     }px)`;
     const newTransform = [posTranslate, halfSize, nodeScale].join(" ");
-    elem.style.transform = newTransform;
+    lazySetTransform(elem, newTransform);
   }
 
   render() {
@@ -72,7 +79,7 @@ export default class DOMPainter extends AbstractScene {
       `scale(${world.scale()})`,
       `translate(${world.x()}px, ${world.y()}px)`,
     ].join(" ");
-    this.getWorldElement().style.transform = tx;
+    lazySetTransform(this.getWorldElement(), tx);
   }
 
   unmount() {

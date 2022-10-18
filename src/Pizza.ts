@@ -60,7 +60,6 @@ export default class Pizza<
   }
 
   scheduleUpdate() {
-    this._projector.resetDOM();
     this._onUpdate.call();
   }
 

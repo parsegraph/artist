@@ -14,20 +14,18 @@ const makeNode = (cam: Camera, onUpdate: () => void): DirectionNode => {
   const node = new DirectionNode();
   const size = 24; // Math.ceil(36 * Math.random());
   // co
-  const val = new DOMContent(() => {
-    const c = document.createElement("div");
-    c.style.fontSize = size + "px";
-    c.style.pointerEvents = "all";
-    c.innerText = "DOMCONTENT" + COUNT++;
-    return c;
-  });
+  const c = document.createElement("div");
+  c.style.fontSize = size + "px";
+  c.style.pointerEvents = "all";
+  c.innerText = "DOMCONTENT" + COUNT++;
+  const val = new DOMContent(() => c)
   val.interact().setClickListener(() => {
     const layout = node.value().getLayout();
-    console.log(layout.absoluteScale(), node.state().scale())
+    console.log(layout.absoluteScale(), node.state().scale());
     cam.setScale(1 / layout.absoluteScale());
     cam.setOrigin(
-      -layout.absoluteX() + (cam.width() / 2)/cam.scale(),
-      -layout.absoluteY() + (cam.height() / 2)/cam.scale()
+      -layout.absoluteX() + cam.width() / 2 / cam.scale(),
+      -layout.absoluteY() + cam.height() / 2 / cam.scale()
     );
     onUpdate();
     return true;
@@ -87,8 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
     belt.scheduleUpdate();
     cam.setSize(proj.width(), proj.height());
     const world = WorldTransform.fromCamera(rootNode, cam);
-    proj.overlay().resetTransform()
-    proj.overlay().clearRect(0, 0, proj.width(), proj.height())
+    proj.overlay().resetTransform();
+    proj.overlay().clearRect(0, 0, proj.width(), proj.height());
     pizza.setWorldTransform(world);
   };
 
