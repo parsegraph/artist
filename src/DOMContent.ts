@@ -239,10 +239,7 @@ export default class DOMContent extends BasicPainted<DOMContent> {
     if (this._size.width() == w && this._size.height() == h) {
       return;
     }
-    this._size.setSize(
-      Math.max(this._size.width(), w),
-      Math.max(this._size.height(), h)
-    );
+    this._size.setSize(w, h);
     this.invalidateLayout();
     this.scheduleRepaint();
   }
