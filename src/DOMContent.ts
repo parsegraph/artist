@@ -236,7 +236,7 @@ export default class DOMContent extends BasicPainted<DOMContent> {
   }
 
   reportSize(w: number, h: number) {
-    if (this._size.width() >= w && this._size.height() >= h) {
+    if (this._size.width() == w && this._size.height() == h) {
       return;
     }
     this._size.setSize(
