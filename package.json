@@ -1,6 +1,6 @@
 {
   "name": "parsegraph-artist",
-  "version": "3.4.31",
+  "version": "3.4.32",
   "description": "artist",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -56,7 +56,7 @@
   "dependencies": {
     "parsegraph-color": "^1.4.7",
     "parsegraph-interact": "^1.6.12",
-    "parsegraph-scene": "^2.3.3",
+    "parsegraph-scene": "^2.3.5",
     "parsegraph-showincamera": "^1.7.5"
   },
   "peerDependencies": {
