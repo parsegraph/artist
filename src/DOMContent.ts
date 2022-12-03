@@ -91,7 +91,13 @@ export class DOMContentScene extends AbstractScene {
       }
       node.value().measure(innerSize);
       const [x, y, absScale] = computeInnerPos(node, innerSize);
-      this._painter.drawElem(elem, node.hasNode(Direction.INWARD) ? new Size(0, 0) : innerSize, x, y, absScale);
+      this._painter.drawElem(
+        elem,
+        node.hasNode(Direction.INWARD) ? new Size(0, 0) : innerSize,
+        x,
+        y,
+        absScale
+      );
     });
 
     lastContents.forEach((elem) => elem.remove());
@@ -103,9 +109,9 @@ export class DOMContentScene extends AbstractScene {
     this._elems.forEach((node) => {
       const content = node.value();
       if (content.backgroundColor()) {
-        const c = node.hasNode(Direction.INWARD) ?
-          content.backgroundColor().multiply(new Color(1, 1, 1, 0.5)) :
-          content.backgroundColor()
+        const c = node.hasNode(Direction.INWARD)
+          ? content.backgroundColor().multiply(new Color(1, 1, 1, 0.5))
+          : content.backgroundColor();
         ctx.fillStyle = c.asRGBA();
         paintNodeBounds(node, (x, y, w, h) => {
           ctx.fillRect(x - w / 2, y - h / 2, w, h);

@@ -50,7 +50,10 @@ export default class DOMPainter extends AbstractScene {
     y: number,
     absScale: number
   ) {
-    if (!this.hasWorldElement() || this.getWorldElement().parentNode !== this.projector().getDOMContainer()) {
+    if (
+      !this.hasWorldElement() ||
+      this.getWorldElement().parentNode !== this.projector().getDOMContainer()
+    ) {
       this.projector().getDOMContainer().appendChild(this.getWorldElement());
       this.projector().getDOMContainer().style.overflow = "initial";
     }

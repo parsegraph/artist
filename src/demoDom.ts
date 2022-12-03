@@ -18,7 +18,7 @@ const makeNode = (cam: Camera, onUpdate: () => void): DirectionNode => {
   c.style.fontSize = size + "px";
   c.style.pointerEvents = "all";
   c.innerText = "DOMCONTENT" + COUNT++;
-  const val = new DOMContent(() => c)
+  const val = new DOMContent(() => c);
   val.interact().setClickListener(() => {
     const layout = node.value().getLayout();
     console.log(layout.absoluteScale(), node.state().scale());
