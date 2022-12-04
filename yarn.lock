@@ -4189,10 +4189,10 @@ parsegraph-rect@^1.5.1:
   resolved "https://registry.yarnpkg.com/parsegraph-rect/-/parsegraph-rect-1.5.1.tgz#ee95591098bacc34284f04969a73f5b851ddfdb4"
   integrity sha512-ScHgiKnEpvOKVbc0aIn0mMJSZoqCGkak1Nlud9oezvHLDsVsMcHUO6KzPiN1DNfLaqQGn+mNBvSf0B04OeFIYw==
 
-parsegraph-scene@^2.3.11:
-  version "2.3.11"
-  resolved "https://registry.yarnpkg.com/parsegraph-scene/-/parsegraph-scene-2.3.11.tgz#beab0561889c3f4fe4c178ab5e1c556bf1ad7a99"
-  integrity sha512-mn4Y6QhpIi/BcupIChRgn94m2IeufF+tCwoiEFnTS22BpL4Z+HQEt5RHLjrMlwo0WC8wfWyub2k9pZMZ6KUn/A==
+parsegraph-scene@^2.3.12:
+  version "2.3.12"
+  resolved "https://registry.yarnpkg.com/parsegraph-scene/-/parsegraph-scene-2.3.12.tgz#ab02ccbd4847586b098681e66fb14d6e507f8cfa"
+  integrity sha512-F7toTS2CIXIEfEUuOgZaeSChQ4udq8+p0ojSOWi2NgEUKKEZDjHwiXiYrO6hnl+XD03crsazHTH8taINAe2I1A==
   dependencies:
     parsegraph-camera "^1.4.18"
     parsegraph-layout "^1.13.6"
