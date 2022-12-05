@@ -54,9 +54,8 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "parsegraph-color": "^1.4.7",
     "parsegraph-interact": "^1.6.12",
-    "parsegraph-scene": "^2.3.13",
+    "parsegraph-scene": "^2.3.14",
     "parsegraph-showincamera": "^1.7.5"
   },
   "peerDependencies": {
