@@ -4135,10 +4135,10 @@ parsegraph-input@^2.0.6:
     parsegraph-matrix "^1.4.12"
     parsegraph-normalizewheel "^1.4.7"
 
-parsegraph-interact@^1.6.12:
-  version "1.6.12"
-  resolved "https://registry.yarnpkg.com/parsegraph-interact/-/parsegraph-interact-1.6.12.tgz#80b5f060d8e7b64981a8199c6db108cba1ce4ed7"
-  integrity sha512-in4Sg3e8ngWHin+OvI9UmYpCbmR0iCG989sRr0cKTvZz6fB3VjLC2AjT/bSCQxBMfqD3L1p9FQRRLc8TRaw67A==
+parsegraph-interact@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/parsegraph-interact/-/parsegraph-interact-1.7.0.tgz#cc04cea1dce063e14b7c68c7233dd69bae10a3a2"
+  integrity sha512-R9/A180qPh+9n7ZLQjpZFiaXMiprxCS7EtqgUT6ZDhSf5hQ0rBETCGeVl3UVMBHmaqSuNnz8Q8NBbIDGfC141w==
   dependencies:
     parsegraph-input "^2.0.6"
     parsegraph-method "^1.4.22"
