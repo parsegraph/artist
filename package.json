@@ -54,7 +54,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "parsegraph-interact": "^1.7.1",
+    "parsegraph-interact": "^1.7.2",
     "parsegraph-scene": "^2.3.21",
     "parsegraph-showincamera": "^1.7.6"
   },
