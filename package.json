@@ -38,8 +38,8 @@
     "jest-environment-jsdom": "^28.1.3",
     "jsdom": "^20.0.0",
     "jsdom-global": "^3.0.2",
-    "parsegraph-checkglerror": "^1.5.4",
-    "parsegraph-log": "^1.7.4",
+    "parsegraph-checkglerror": "^1.5.5",
+    "parsegraph-log": "^1.7.5",
     "prettier": "^2.7.1",
     "raw-loader": "^4.0.2",
     "source-map-loader": "^4.0.0",
@@ -55,11 +55,11 @@
   },
   "dependencies": {
     "parsegraph-interact": "^1.7.3",
-    "parsegraph-scene": "^2.3.22",
-    "parsegraph-showincamera": "^1.7.7"
+    "parsegraph-scene": "^2.3.23",
+    "parsegraph-showincamera": "^1.7.8"
   },
   "peerDependencies": {
-    "parsegraph-checkglerror": "^1.5.4",
-    "parsegraph-log": "^1.7.4"
+    "parsegraph-checkglerror": "^1.5.5",
+    "parsegraph-log": "^1.7.5"
   }
 }
