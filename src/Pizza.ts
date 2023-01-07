@@ -72,12 +72,13 @@ export default class Pizza<
   }
 
   populate(root: PaintedNode<Model, View>) {
-    this.scheduleUpdate();
     this._root = root;
     let seq: NodeValues<Model> = null;
     let seqArtist: Artist<Model, View> = null;
 
     let currentSlice = 0;
+
+    let changed = false;
 
     // Adds the current node value sequence as a new Renderable
     // created from the root node's Artist.
@@ -95,6 +96,7 @@ export default class Pizza<
           // Renderable cannot be patched, so remove it and replace.
           this._slices[currentSlice][1].unmount();
           this._slices.splice(currentSlice, 1);
+          changed = true;
         }
       }
 
@@ -102,6 +104,7 @@ export default class Pizza<
       const renderable = seqArtist.make(this.projector(), seq);
       renderable.setOnScheduleUpdate(this.scheduleUpdate, this);
       this._slices.splice(currentSlice++, 0, [seqArtist, renderable]);
+      changed = true;
     };
 
     root.forEachNode((node: PaintedNode<Model, View>) => {
@@ -113,6 +116,7 @@ export default class Pizza<
         // Artist has changed, so start a new sequence.
         seq = new NodeValues<Model>(node);
         seqArtist = artist;
+        changed = true;
       } else {
         // Artist did not change, so include node in current sequence.
         seq.include();
@@ -125,6 +129,11 @@ export default class Pizza<
     while (this._slices.length > currentSlice) {
       const slice = this._slices.pop();
       slice[1].unmount();
+      changed = true;
+    }
+
+    if (changed) {
+      this.scheduleUpdate();
     }
   }
 
