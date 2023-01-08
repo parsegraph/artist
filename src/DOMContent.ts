@@ -128,6 +128,22 @@ export class DOMContentScene extends AbstractScene {
   }
 
   setElems(elems: NodeValues<DOMContent>) {
+    if (this._elems) {
+      const oldLen = this._elems.length();
+      if (!elems) {
+        this._created.forEach((created) => created[1].remove());
+        this._created = [];
+      } else if (elems.length() < oldLen) {
+        for (let i = elems.length(); i < oldLen; ++i) {
+          if (this._created[i]) {
+            this._created[i][1].remove();
+          }
+        }
+        while (this._created.length > elems.length()) {
+          this._created.pop();
+        }
+      }
+    }
     this._elems = elems;
   }
 
