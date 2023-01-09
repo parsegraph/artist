@@ -55,8 +55,8 @@
   },
   "dependencies": {
     "parsegraph-interact": "^1.7.3",
-    "parsegraph-scene": "^2.3.27",
-    "parsegraph-showincamera": "^1.7.11"
+    "parsegraph-scene": "^2.3.28",
+    "parsegraph-showincamera": "^1.7.12"
   },
   "peerDependencies": {
     "parsegraph-checkglerror": "^1.5.5",
