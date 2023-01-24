@@ -56,7 +56,7 @@
   "dependencies": {
     "parsegraph-camera": "^1.4.22",
     "parsegraph-color": "^1.4.12",
-    "parsegraph-compileprogram": "^2.2.20",
+    "parsegraph-compileprogram": "^2.2.21",
     "parsegraph-direction": "^2.2.4",
     "parsegraph-interact": "^1.7.5",
     "parsegraph-layout": "^1.13.17",
