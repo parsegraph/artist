@@ -54,18 +54,9 @@
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "parsegraph-camera": "^1.4.23",
-    "parsegraph-color": "^1.4.13",
-    "parsegraph-compileprogram": "^2.2.22",
     "parsegraph-interact": "^1.7.6",
-    "parsegraph-matrix": "^1.4.16",
-    "parsegraph-method": "^1.4.26",
-    "parsegraph-projector": "^1.14.12",
-    "parsegraph-scene": "^2.3.40",
-    "parsegraph-showincamera": "^1.7.24",
-    "parsegraph-size": "^1.7.5",
-    "parsegraph-timing": "^1.4.20",
-    "parsegraph-timingbelt": "^1.8.4"
+    "parsegraph-scene": "^2.3.41",
+    "parsegraph-showincamera": "^1.7.25"
   },
   "peerDependencies": {
     "parsegraph-checkglerror": "^1.5.8",
