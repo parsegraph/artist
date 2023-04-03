@@ -4142,11 +4142,6 @@ parsegraph-extent@^1.4.16:
     parsegraph-fuzzyequals "^1.4.13"
     parsegraph-gettimeinmillis "^1.4.10"
 
-parsegraph-fuzzyequals@^1.4.12:
-  version "1.4.12"
-  resolved "https://registry.yarnpkg.com/parsegraph-fuzzyequals/-/parsegraph-fuzzyequals-1.4.12.tgz#fbeea56695104a3791b3ba194ad589d85281a75c"
-  integrity sha512-rpI9Pb0wt8DiVOl1Cvw4kTjs+KjRSS7ktNeGuMz2h4dPEOM1WmhKVjixomYh/PY3VMjbm9xhzZDYG0jaBsZlRg==
-
 parsegraph-fuzzyequals@^1.4.13:
   version "1.4.13"
   resolved "https://registry.yarnpkg.com/parsegraph-fuzzyequals/-/parsegraph-fuzzyequals-1.4.13.tgz#4012ee7d7e0c0941d74f6ddfb319bb85e8c52472"
@@ -4167,15 +4162,6 @@ parsegraph-gettimeinmillis@^1.4.9:
   resolved "https://registry.yarnpkg.com/parsegraph-gettimeinmillis/-/parsegraph-gettimeinmillis-1.4.9.tgz#2b921d515b1cf767d8a84447e8c7d0376b344d86"
   integrity sha512-az+nImOhRkRJDUyn/QgA5Pgb7aSIeXlHL3i+hBPFxCD9cVRFy99MxKrcqxaRCQqcg2vFtP1GhacbkWx598vwtw==
 
-parsegraph-input@^2.0.10:
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/parsegraph-input/-/parsegraph-input-2.0.11.tgz#bf18fae80887ca9b3f61369851dd8f483c73acc2"
-  integrity sha512-+9oGfwbUj80LV75tw9awlO3ec7U5LEf+8UVPYPVtYwuWyDs3fA8cC+SgE2wZ9r6Em+bdsSG0PeT1xFzH+VJE+A==
-  dependencies:
-    parsegraph-fuzzyequals "^1.4.12"
-    parsegraph-matrix "^1.4.15"
-    parsegraph-normalizewheel "^1.4.9"
-
 parsegraph-input@^2.0.12:
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/parsegraph-input/-/parsegraph-input-2.0.12.tgz#f2f91d203ac09a5c02cf8b86739f232cc3058c98"
@@ -4185,13 +4171,13 @@ parsegraph-input@^2.0.12:
     parsegraph-matrix "^1.4.16"
     parsegraph-normalizewheel "^1.4.10"
 
-parsegraph-interact@^1.7.6:
-  version "1.7.6"
-  resolved "https://registry.yarnpkg.com/parsegraph-interact/-/parsegraph-interact-1.7.6.tgz#d6ae8cb21acb06b02e018e3b9880fe4b0c5f3a58"
-  integrity sha512-IAdUu7Gvbtj7YlA4rsvfOWlLnXnkQ+tWLTtO7PTEs0oQiIxYP+g+vRoBO3YTK2BnhzeLeWLvtFQbRgxEba3BGw==
+parsegraph-interact@^1.7.7:
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/parsegraph-interact/-/parsegraph-interact-1.7.7.tgz#360c18686c43a7eabfe3fde7cf1a815f846956c6"
+  integrity sha512-uIvK2xH1Al6RVG5nkJZprjFX1ieSk+8Z4rdjAED204M2ZVQGST0eMh1pxZgLh1HS0LRmEoxYCmxuD6627Kpwzg==
   dependencies:
-    parsegraph-input "^2.0.10"
-    parsegraph-method "^1.4.25"
+    parsegraph-input "^2.0.12"
+    parsegraph-method "^1.4.26"
 
 parsegraph-layout@^1.16.3:
   version "1.16.3"
@@ -4209,11 +4195,6 @@ parsegraph-log@^1.9.3:
   resolved "https://registry.yarnpkg.com/parsegraph-log/-/parsegraph-log-1.9.3.tgz#11614e0f24b1070663e54e604250608fb6a13820"
   integrity sha512-JXMnUKMMt25axAAxkhlKakLGdtFMd/m1JZ1jmXy3w1osz7CAM6Pa4qKsbBjNmDVOTFgICY2xWCdBqf1b68eqOg==
 
-parsegraph-matrix@^1.4.15:
-  version "1.4.15"
-  resolved "https://registry.yarnpkg.com/parsegraph-matrix/-/parsegraph-matrix-1.4.15.tgz#7af28a980ca7c3274954e69f7a2d6beb7c79ccdf"
-  integrity sha512-1sTQoPFD00trS/PJ92Nt6xSBB1F9WYFVH+vuEodtIlw3X6vhb53e4dv1UV26noekGwTkgURia2djNUcGj3wNeA==
-
 parsegraph-matrix@^1.4.16:
   version "1.4.16"
   resolved "https://registry.yarnpkg.com/parsegraph-matrix/-/parsegraph-matrix-1.4.16.tgz#fdd73c1dd51620359a53a7bc105ea0eb681cfbf8"
@@ -4229,7 +4210,7 @@ parsegraph-method@^1.4.26:
   resolved "https://registry.yarnpkg.com/parsegraph-method/-/parsegraph-method-1.4.26.tgz#ce3cd94f916817f433328769bf66fe04465ae5ae"
   integrity sha512-ybmHDWgoEfzTT0vSTJLfKsqv2Ug/QBkVm+Qz81wwraEZJ8bPxTgdYIVYxdFZv1tpAB3j5OTlnMEQKPBB7XR/bQ==
 
-parsegraph-normalizewheel@^1.4.10, parsegraph-normalizewheel@^1.4.9:
+parsegraph-normalizewheel@^1.4.10:
   version "1.4.10"
   resolved "https://registry.yarnpkg.com/parsegraph-normalizewheel/-/parsegraph-normalizewheel-1.4.10.tgz#4c7a774223e5804ec30c167b21f240ec8c3fef85"
   integrity sha512-Iz7WqcMgJDbXNbJnN9uWV2xI8txXbiVWarzDflyL98t+Z4Fx8rYZ/n7RHKeJBw/K0mlC4UkzZHkbfyyPakHlbQ==
