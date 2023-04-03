@@ -6,12 +6,11 @@ import Direction, {
 import Freezer from "./freezer/Freezer";
 import { EventListener, FocusListener, KeyListener } from "parsegraph-interact";
 import Painted from "./Painted";
-import { Renderable } from "parsegraph-timingbelt";
-import { Transformed } from "parsegraph-scene";
+import { WorldRenderable } from "parsegraph-scene";
 
 export default class PaintedCaret<
   Model extends Painted<Model, View>,
-  View extends Renderable & Transformed = Renderable & Transformed
+  View extends WorldRenderable = WorldRenderable
 > extends DirectionCaret<Model> {
   _freezer: Freezer;
 

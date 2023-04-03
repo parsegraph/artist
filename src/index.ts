@@ -34,6 +34,14 @@ import DOMContent, {
   ContentEntry,
 } from "./DOMContent";
 
+import NodeRenderData from "./NodeRenderData";
+
+import GraphPainterAnalytics from "./GraphPainterAnalytics";
+import GraphPainter from "./GraphPainter";
+import PaintGroup from "./PaintGroup";
+
+import Viewport from "./Viewport";
+
 export default Artist;
 export {
   RenderArtist,
@@ -70,4 +78,9 @@ export {
   ContentEntry,
   ElementFunc,
   computeInnerPos,
+  NodeRenderData,
+  GraphPainterAnalytics,
+  GraphPainter,
+  PaintGroup,
+  Viewport,
 };
