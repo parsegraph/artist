@@ -4176,6 +4176,15 @@ parsegraph-input@^2.0.10:
     parsegraph-matrix "^1.4.15"
     parsegraph-normalizewheel "^1.4.9"
 
+parsegraph-input@^2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/parsegraph-input/-/parsegraph-input-2.0.12.tgz#f2f91d203ac09a5c02cf8b86739f232cc3058c98"
+  integrity sha512-oFfHgbHo+Nd19YxjJZUensF9o6Txc8Hmyv9B70JXKIXQwcR4t3xpRsWPRqPf6T38zqgUMQszhLTPGPyGbO3hMg==
+  dependencies:
+    parsegraph-fuzzyequals "^1.4.13"
+    parsegraph-matrix "^1.4.16"
+    parsegraph-normalizewheel "^1.4.10"
+
 parsegraph-interact@^1.7.6:
   version "1.7.6"
   resolved "https://registry.yarnpkg.com/parsegraph-interact/-/parsegraph-interact-1.7.6.tgz#d6ae8cb21acb06b02e018e3b9880fe4b0c5f3a58"
@@ -4220,7 +4229,7 @@ parsegraph-method@^1.4.26:
   resolved "https://registry.yarnpkg.com/parsegraph-method/-/parsegraph-method-1.4.26.tgz#ce3cd94f916817f433328769bf66fe04465ae5ae"
   integrity sha512-ybmHDWgoEfzTT0vSTJLfKsqv2Ug/QBkVm+Qz81wwraEZJ8bPxTgdYIVYxdFZv1tpAB3j5OTlnMEQKPBB7XR/bQ==
 
-parsegraph-normalizewheel@^1.4.9:
+parsegraph-normalizewheel@^1.4.10, parsegraph-normalizewheel@^1.4.9:
   version "1.4.10"
   resolved "https://registry.yarnpkg.com/parsegraph-normalizewheel/-/parsegraph-normalizewheel-1.4.10.tgz#4c7a774223e5804ec30c167b21f240ec8c3fef85"
   integrity sha512-Iz7WqcMgJDbXNbJnN9uWV2xI8txXbiVWarzDflyL98t+Z4Fx8rYZ/n7RHKeJBw/K0mlC4UkzZHkbfyyPakHlbQ==
@@ -4241,20 +4250,14 @@ parsegraph-rect@^1.5.5:
   resolved "https://registry.yarnpkg.com/parsegraph-rect/-/parsegraph-rect-1.5.5.tgz#88d7b837829237f3ec668e2eb59bd607d64c070c"
   integrity sha512-azp7JM7XRIqAvSgZyrb9apLOs9o7LvTNc1cl/b7R1ZvZJ8BHoyTYxyRcq43/QoRwthqg73li9B4smE3uPa8mPw==
 
-parsegraph-scene@^2.3.42:
-  version "2.3.42"
-  resolved "https://registry.yarnpkg.com/parsegraph-scene/-/parsegraph-scene-2.3.42.tgz#549d63fbcb6618b4f8c11143e512843e382c529b"
-  integrity sha512-1ZStqj9oIizGHnxS35qA/Sv+rn43o2IDItAI45Dync9u1IT2nG3pfwQ+ZXNablM4Po3TBFmiEnj0NR45P7rDbA==
+parsegraph-scene@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/parsegraph-scene/-/parsegraph-scene-3.0.0.tgz#777b921a8a847811c1a216dd4eea9e781c1b54dd"
+  integrity sha512-/eIBb8LsCcNeZRqE3tf2Hta0RHfjXNUdWCeSlvRWV5zYnjvobVseNoBd4AFIuSDihNGsvzLMPzpdoIun/7alXg==
   dependencies:
     parsegraph-camera "^1.4.24"
-    parsegraph-color "^1.4.13"
-    parsegraph-layout "^1.16.3"
-    parsegraph-matrix "^1.4.16"
-    parsegraph-method "^1.4.26"
+    parsegraph-input "^2.0.12"
     parsegraph-projector "^1.14.12"
-    parsegraph-rect "^1.5.5"
-    parsegraph-timing "^1.4.20"
-    parsegraph-timingbelt "^1.8.4"
 
 parsegraph-shader@^1.5.11:
   version "1.5.11"
