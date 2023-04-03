@@ -27,6 +27,7 @@ SCRIPT_FILES = \
 	src/DOMPainter.ts \
 	src/RenderArtist.ts \
 	src/demo.ts \
+	src/stringtree.ts \
 	test/test.ts
 
 EXTRA_SCRIPTS = \
