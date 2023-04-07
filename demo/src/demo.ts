@@ -6,7 +6,7 @@ const { readFileSync, statSync } = require("fs");
 process.chdir("..");
 const { DIST_NAME } = require("../../webpack.common");
 const { entry } = require("../../webpack.config");
-process.chdir('./demo');
+process.chdir("./demo");
 
 const getPort = (port: number) => {
   if (statSync("../demo.port")) {
