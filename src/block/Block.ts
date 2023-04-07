@@ -1,4 +1,4 @@
-import Artist, { PaintedNode, BasicPainted } from "parsegraph-artist";
+import { Artist, PaintedNode, BasicPainted } from "../artist";
 import Color from "parsegraph-color";
 import Size from "parsegraph-size";
 import Direction, { Axis, Alignment } from "parsegraph-direction";

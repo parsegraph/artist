@@ -1,4 +1,4 @@
-import { PaintedCaret } from "parsegraph-artist";
+import { PaintedCaret } from "../artist";
 import Block from "./Block";
 import Font from "parsegraph-font";
 import DefaultBlockPalette from "./DefaultBlockPalette";

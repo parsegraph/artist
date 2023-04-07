@@ -1,5 +1,5 @@
 import { DirectionNode, InplaceNodePalette } from "parsegraph-direction";
-import Artist from "parsegraph-artist";
+import { Artist } from "../artist";
 import Block from "./Block";
 import { style } from "./BlockStyle";
 

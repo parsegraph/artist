@@ -1,5 +1,5 @@
-import Artist, { NodeValues } from "parsegraph-artist";
 import { Projector } from "parsegraph-projector";
+import { Artist, NodeValues } from "../artist";
 import Block from "./Block";
 import BlockScene from "./BlockScene";
 

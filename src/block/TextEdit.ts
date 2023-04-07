@@ -1,6 +1,6 @@
 import BlockType from "./BlockType";
 import BlockNode from "./BlockNode";
-import { DOMContent, DOMContentArtist } from "parsegraph-artist";
+import { DOMContent, DOMContentArtist } from "../dom";
 
 const domArtist = new DOMContentArtist();
 
