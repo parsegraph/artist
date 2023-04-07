@@ -52,7 +52,7 @@ export default class FrozenNode {
     this._validated = true;
   }
 
-  paint(pizza: WorldRenderable, projector: Projector) {
+  paint(paintRun: WorldRenderable, projector: Projector) {
     log("Painting frozen node");
     this.validate();
     if (!this._windowFragments.has(projector)) {
@@ -89,7 +89,7 @@ export default class FrozenNode {
     }
     for (const i in fragments) {
       if (Object.prototype.hasOwnProperty.call(fragments, i)) {
-        fragments[i].paint(pizza);
+        fragments[i].paint(paintRun);
       }
     }
   }

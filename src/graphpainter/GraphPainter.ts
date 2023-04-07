@@ -264,12 +264,12 @@ export default class GraphPainter implements Projected {
         ];
       pg.setCamera(this.camera());
       pg.setLabels(this.labels());
-      const pizza = pg.pizzaFor(projector);
+      const paintRun = pg.paintRunFor(projector);
       if (pg.render(projector)) {
         analytics.recordDirtyRender();
-      } else if (pizza.numRenders() > 1) {
+      } else if (paintRun.numRenders() > 1) {
         analytics.recordConsecutiveRender();
-        analytics.recordNumRenders(pizza.numRenders());
+        analytics.recordNumRenders(paintRun.numRenders());
       }
     }
     const camera = this.camera();

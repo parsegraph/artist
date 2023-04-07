@@ -15,7 +15,8 @@ import {
 import Rect from "parsegraph-rect";
 import NodeRenderData from "./NodeRenderData";
 import { Renderable } from "parsegraph-timingbelt";
-import { PaintedNode, Pizza } from "parsegraph-artist";
+import PaintRun from './PaintRun';
+import PaintedNode from '../artist/PaintedNode';
 import { WorldTransform } from "parsegraph-scene";
 
 let CACHED_RENDERS: number = 0;
@@ -25,7 +26,7 @@ const renderData: NodeRenderData = new NodeRenderData();
 
 export default class PaintGroup implements Projected {
   _root: PaintedNode;
-  _projections: Map<Projector, Pizza>;
+  _projections: Map<Projector, PaintRun>;
   _onScheduleUpdate: Method;
   _camera: Camera;
   _labels: WorldLabels;
@@ -38,8 +39,8 @@ export default class PaintGroup implements Projected {
   }
 
   allViews(cb: (slice: Renderable) => void): void {
-    this._projections.forEach((pizza) => {
-      pizza.eachView(cb);
+    this._projections.forEach((paintRun) => {
+      paintRun.eachView(cb);
     });
   }
 
@@ -51,20 +52,20 @@ export default class PaintGroup implements Projected {
     return needsUpdate;
   }
 
-  hasPizza(projector: Projector): boolean {
+  hasPaintRun(projector: Projector): boolean {
     return this._projections.has(projector);
   }
 
-  pizzaFor(projector: Projector) {
+  paintRunFor(projector: Projector) {
     return this._projections.get(projector);
   }
 
   unmount(projector: Projector): void {
-    if (!this.hasPizza(projector)) {
+    if (!this.hasPaintRun(projector)) {
       return;
     }
     logEnterc("Destructors", "Unmounting paint group");
-    this.pizzaFor(projector).eachView((view) => view.unmount());
+    this.paintRunFor(projector).eachView((view) => view.unmount());
     this._projections.delete(projector);
     logLeave();
   }
@@ -89,22 +90,22 @@ export default class PaintGroup implements Projected {
     }
 
     logEnterc("Painting", "Painting paint group");
-    if (!this.hasPizza(projector)) {
-      const pizza = new Pizza(projector);
-      pizza.setOnScheduleUpdate(this.scheduleUpdate, this);
-      this._projections.set(projector, pizza);
+    if (!this.hasPaintRun(projector)) {
+      const paintRun = new PaintRun(projector);
+      paintRun.setOnScheduleUpdate(this.scheduleUpdate, this);
+      this._projections.set(projector, paintRun);
     }
-    const pizza = this.pizzaFor(projector);
+    const paintRun = this.paintRunFor(projector);
 
-    pizza.populate(this.root());
-    const needsRepaint = pizza.paint(timeout);
+    paintRun.populate(this.root());
+    const needsRepaint = paintRun.paint(timeout);
     logLeave();
 
     return needsRepaint;
   }
 
   isPainted(projector: Projector) {
-    return !!this.pizzaFor(projector);
+    return !!this.paintRunFor(projector);
   }
 
   bounds() {
@@ -282,11 +283,11 @@ export default class PaintGroup implements Projected {
     logEnterc("Rendering", "Rendering paint group");
     world.setLabels(this.labels());
     let needsUpdate = false;
-    const pizza = this.pizzaFor(projector);
-    if (pizza) {
-      pizza.setWorldTransform(world);
-      pizza.populate(this.root());
-      needsUpdate = pizza.render() || needsUpdate;
+    const paintRun = this.paintRunFor(projector);
+    if (paintRun) {
+      paintRun.setWorldTransform(world);
+      paintRun.populate(this.root());
+      needsUpdate = paintRun.render() || needsUpdate;
     } else {
       needsUpdate = true;
     }

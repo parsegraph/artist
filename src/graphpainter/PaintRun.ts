@@ -6,7 +6,7 @@ import { Projector, SharedProjector } from "parsegraph-projector";
 import Painted from "./Painted";
 import PaintedNode from "./PaintedNode";
 
-export default class Pizza<
+export default class PaintRun<
   Model extends Painted<Model, View> = any,
   View extends WorldRenderable = WorldRenderable
 > implements WorldRenderable
