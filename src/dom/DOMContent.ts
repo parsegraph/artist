@@ -2,7 +2,17 @@ import { Projector } from "parsegraph-projector";
 import Direction from "parsegraph-direction";
 import Size from "parsegraph-size";
 import { AbstractScene, WorldTransform } from "parsegraph-scene";
-import { Artist, BasicPainted, NodeValues, MIN_BLOCK_HEIGHT, MIN_BLOCK_WIDTH, computeInnerPos, paintNodeLines, paintNodeBounds, PaintedNode } from '../artist';
+import {
+  Artist,
+  BasicPainted,
+  NodeValues,
+  MIN_BLOCK_HEIGHT,
+  MIN_BLOCK_WIDTH,
+  computeInnerPos,
+  paintNodeLines,
+  paintNodeBounds,
+  PaintedNode,
+} from "../artist";
 import Color from "parsegraph-color";
 import DOMPainter from "./DOMPainter";
 

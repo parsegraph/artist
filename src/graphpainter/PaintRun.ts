@@ -1,10 +1,7 @@
-import Artist from "./Artist";
+import { Artist, NodeValues, Painted, PaintedNode } from "../artist";
 import { WorldTransform, WorldRenderable } from "parsegraph-scene";
-import NodeValues from "./NodeValues";
 import Method from "parsegraph-method";
 import { Projector, SharedProjector } from "parsegraph-projector";
-import Painted from "./Painted";
-import PaintedNode from "./PaintedNode";
 
 export default class PaintRun<
   Model extends Painted<Model, View> = any,

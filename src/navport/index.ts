@@ -1,5 +1,3 @@
-import Navport from './Navport';
+import Navport from "./Navport";
 
-export {
-  Navport
-};
+export { Navport };
