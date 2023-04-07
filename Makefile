@@ -26,7 +26,7 @@ SCRIPT_FILES = \
 	src/glsl.d.ts \
 	src/graphpainter/GraphPainterAnalytics.ts \
 	src/graphpainter/PaintGroup.ts \
-	src/graphpainter/PaintRun.ts \
+	src/graphpainter/Pizza.ts \
 	src/graphpainter/GraphPainter.ts \
 	src/graphpainter/navport/carousel/index.ts \
 	src/graphpainter/navport/carousel/settings.ts \
@@ -88,6 +88,7 @@ SCRIPT_FILES = \
 	src/block/BlockCaret.ts \
 	src/block/Label.ts \
 	src/block/DefaultBlockScene.ts \
+	src/demo.ts \
 	test/test.ts
 
 EXTRA_SCRIPTS = \
