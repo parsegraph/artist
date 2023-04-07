@@ -25,8 +25,8 @@ SCRIPT_FILES = \
 	src/demo/blockartist/BlockArtistDOM.ts \
 	src/glsl.d.ts \
 	src/graphpainter/GraphPainterAnalytics.ts \
+	src/graphpainter/PaintRun.ts \
 	src/graphpainter/PaintGroup.ts \
-	src/graphpainter/Pizza.ts \
 	src/graphpainter/GraphPainter.ts \
 	src/graphpainter/navport/carousel/index.ts \
 	src/graphpainter/navport/carousel/settings.ts \
