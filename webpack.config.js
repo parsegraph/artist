@@ -2,7 +2,6 @@ const {webpackConfig, relDir} = require("./webpack.common");
 
 module.exports = {
   entry: {
-    artist: relDir("src/demo/artist.ts"),
     block2d: relDir("src/demo/block2d.ts"),
     block3d: relDir("src/demo/block3d.ts"),
     blockdom: relDir("src/demo/blockdom.ts"),
@@ -18,7 +17,9 @@ module.exports = {
     stringtree: relDir("src/demo/stringtree.ts"),
     viewportDom: relDir("src/demo/viewportDom.ts"),
     viewport: relDir("src/demo/viewport.ts"),
-    weboverlay: relDir("src/demo/weboverlay.ts")
+    weboverlay: relDir("src/demo/weboverlay.ts"),
+    index: relDir("src/index.ts"),
+    demo: relDir("src/demo.ts"),
   },
   ...webpackConfig(false),
 };
