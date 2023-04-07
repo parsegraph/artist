@@ -4,7 +4,7 @@ import Direction, {
   readDirection,
 } from "parsegraph-direction";
 import Freezer from "./freezer/Freezer";
-import { EventListener, FocusListener, KeyListener } from "parsegraph-interact";
+import { EventListener, FocusListener, KeyListener } from "./interact";
 import Painted from "./Painted";
 import { WorldRenderable } from "parsegraph-scene";
 

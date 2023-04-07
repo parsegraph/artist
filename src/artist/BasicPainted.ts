@@ -1,4 +1,4 @@
-import { Interaction } from "parsegraph-interact";
+import { Interaction } from "./interact";
 import { Layout } from "parsegraph-layout";
 import Artist from "./Artist";
 import Painted from "./Painted";
