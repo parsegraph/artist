@@ -26,40 +26,45 @@ SCRIPT_FILES = \
 	src/glsl.d.ts \
 	src/graphpainter/GraphPainterAnalytics.ts \
 	src/graphpainter/PaintRun.ts \
+	src/graphpainter/index.ts \
 	src/graphpainter/PaintGroup.ts \
 	src/graphpainter/GraphPainter.ts \
-	src/graphpainter/navport/carousel/index.ts \
-	src/graphpainter/navport/carousel/settings.ts \
-	src/graphpainter/navport/carousel/ActionCarousel.ts \
-	src/graphpainter/navport/carousel/Carousel.ts \
-	src/graphpainter/navport/carousel/CarouselAction.ts \
-	src/graphpainter/navport/NavportMouseController.ts \
-	src/graphpainter/navport/NavportCursor.ts \
-	src/graphpainter/navport/NavportKeyController.ts \
-	src/graphpainter/navport/displaymode/single.ts \
-	src/graphpainter/navport/displaymode/fit.ts \
-	src/graphpainter/navport/displaymode/fixed.ts \
-	src/graphpainter/navport/displaymode/fullscreen.ts \
-	src/graphpainter/navport/displaymode/menuless.ts \
-	src/graphpainter/navport/displaymode/split.ts \
-	src/graphpainter/navport/NavportWebOverlay.ts \
-	src/graphpainter/navport/render/render.ts \
-	src/graphpainter/navport/render/showGraph.ts \
-	src/graphpainter/navport/Navport.ts \
-	src/graphpainter/navport/CameraFilter.ts \
-	src/graphpainter/navport/InputController.ts \
 	src/graphpainter/RenderArtist.ts \
 	src/graphpainter/NodeRenderData.ts \
+	src/navport/carousel/index.ts \
+	src/navport/carousel/settings.ts \
+	src/navport/carousel/ActionCarousel.ts \
+	src/navport/carousel/Carousel.ts \
+	src/navport/carousel/CarouselAction.ts \
+	src/navport/index.ts \
+	src/navport/NavportMouseController.ts \
+	src/navport/NavportCursor.ts \
+	src/navport/NavportKeyController.ts \
+	src/navport/displaymode/single.ts \
+	src/navport/displaymode/fit.ts \
+	src/navport/displaymode/fixed.ts \
+	src/navport/displaymode/fullscreen.ts \
+	src/navport/displaymode/menuless.ts \
+	src/navport/displaymode/split.ts \
+	src/navport/NavportWebOverlay.ts \
+	src/navport/render/render.ts \
+	src/navport/render/showGraph.ts \
+	src/navport/Navport.ts \
+	src/navport/CameraFilter.ts \
+	src/navport/InputController.ts \
+	src/dom/index.ts \
 	src/dom/DOMContent.ts \
 	src/dom/DOMPainter.ts \
 	src/artist/paintNodeBounds.ts \
 	src/artist/Painted.ts \
+	src/artist/index.ts \
 	src/artist/paintNodeLines.ts \
 	src/artist/fromNode.ts \
 	src/artist/Artist.ts \
 	src/artist/PaintedNode.ts \
 	src/artist/BasicPainted.ts \
 	src/artist/computeInnerPos.ts \
+	src/artist/freezer/index.ts \
 	src/artist/freezer/FreezerCache.ts \
 	src/artist/freezer/Freezable.ts \
 	src/artist/freezer/Freezer.ts \
