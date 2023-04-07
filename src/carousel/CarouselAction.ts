@@ -1,5 +1,5 @@
 import Method from "parsegraph-method";
-import { PaintedNode } from "parsegraph-artist";
+import { PaintedNode } from "../artist";
 
 export default class CarouselAction {
   _action: PaintedNode;

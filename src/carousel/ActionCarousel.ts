@@ -1,7 +1,7 @@
 import CarouselAction from "./CarouselAction";
-import { PaintedNode } from "parsegraph-artist";
+import { PaintedNode } from "../artist";
 import { Keystroke } from "parsegraph-input";
-import { BlockNode, BlockPalette, DefaultBlockPalette } from "parsegraph-block";
+import { BlockNode, BlockPalette, DefaultBlockPalette } from "../block";
 import Carousel from "./Carousel";
 
 export default class ActionCarousel {

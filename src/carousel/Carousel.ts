@@ -2,12 +2,13 @@ import FanPainter from "parsegraph-fanpainter";
 import { matrixMultiply3x3, makeScale3x3 } from "parsegraph-matrix";
 import Color from "parsegraph-color";
 import { Projector, Projected } from "parsegraph-projector";
-import CarouselAction from "./CarouselAction";
 import Camera from "parsegraph-camera";
-import { PaintedNode } from "parsegraph-artist";
 import { Keystroke } from "parsegraph-input";
 import Method from "parsegraph-method";
-import { GraphPainter } from "parsegraph-graphpainter";
+
+import CarouselAction from "./CarouselAction";
+import { PaintedNode } from "../artist";
+import { GraphPainter } from "../graphpainter";
 
 export class CarouselPlot {
   node: PaintedNode;
