@@ -1,6 +1,10 @@
 DIST_NAME = artist
 
 SCRIPT_FILES = \
+	src/carousel/index.ts \
+	src/carousel/ActionCarousel.ts \
+	src/carousel/Carousel.ts \
+	src/carousel/CarouselAction.ts \
 	src/index.ts \
 	src/demo/diagonalBlockDemo.ts \
 	src/demo/viewportDom.ts \
@@ -31,11 +35,6 @@ SCRIPT_FILES = \
 	src/graphpainter/GraphPainter.ts \
 	src/graphpainter/RenderArtist.ts \
 	src/graphpainter/NodeRenderData.ts \
-	src/navport/carousel/index.ts \
-	src/navport/carousel/settings.ts \
-	src/navport/carousel/ActionCarousel.ts \
-	src/navport/carousel/Carousel.ts \
-	src/navport/carousel/CarouselAction.ts \
 	src/navport/index.ts \
 	src/navport/NavportMouseController.ts \
 	src/navport/NavportCursor.ts \
@@ -47,11 +46,12 @@ SCRIPT_FILES = \
 	src/navport/displaymode/menuless.ts \
 	src/navport/displaymode/split.ts \
 	src/navport/NavportWebOverlay.ts \
-	src/navport/render/render.ts \
-	src/navport/render/showGraph.ts \
 	src/navport/Navport.ts \
 	src/navport/CameraFilter.ts \
 	src/navport/InputController.ts \
+	src/render/index.ts \
+	src/render/render.ts \
+	src/render/showGraph.ts \
 	src/dom/index.ts \
 	src/dom/DOMContent.ts \
 	src/dom/DOMPainter.ts \
