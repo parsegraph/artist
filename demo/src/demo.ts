@@ -3,7 +3,10 @@ const express = require("express");
 const app = express();
 const { readFileSync, statSync } = require("fs");
 
+process.chdir("..");
 const { DIST_NAME } = require("../../webpack.common");
+const { entry } = require("../../webpack.config");
+process.chdir('./demo');
 
 const getPort = (port: number) => {
   if (statSync("../demo.port")) {
@@ -80,7 +83,7 @@ app.get(root, async (req: any, res: any) => {
   );
   write(`<h2>Samples &amp; Demos</h2>`);
   write(`<ul>`);
-  (await getDemos()).forEach((demo) => {
+  Object.keys(entry).forEach((demo) => {
     demo && write(`<li><a href='${root}/${demo}.html'>${demo}</li>`);
   });
   write(`</ul>`);
@@ -103,20 +106,22 @@ app.get(root + "/*.html", (req: any, res: any) => {
   write(`<head>`);
   write(`<meta charset="UTF-8">`);
   write(`<meta http-equiv="X-UA-Compatible" content="IE=edge">`);
-  write(`<meta name="viewport" content="width=device-width, initial-scale=1.0">`);
+  write(
+    `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
+  );
   write(`<title>${demo}</title>`);
   write(`<style>`);
-      write(`body {margin: 0;padding: 0;}`);
-      write(`.parsegraph_Window {width: 100vw;height: 100vh;}`);
+  write(`body {margin: 0;padding: 0;}`);
+  write(`.parsegraph_Window {width: 100vw;height: 100vh;}`);
   write(`</style>`);
   write(`</head>`);
   write(`<body>`);
-    write(`<div style="width: 100vw; height: 100vh">`);
-        write(`<div style="width: 100%; height: 100%" id="demo"></div>`);
-    write(`</div>`);
-    write(`<script src="parsegraph-log.js"></script>`);
-    write(`<script src="parsegraph-checkglerror.js"></script>`);
-    write(`<script src="src/${demo}.js"></script>`);
+  write(`<div style="width: 100vw; height: 100vh">`);
+  write(`<div style="width: 100%; height: 100%" id="demo"></div>`);
+  write(`</div>`);
+  write(`<script src="parsegraph-log.js"></script>`);
+  write(`<script src="parsegraph-checkglerror.js"></script>`);
+  write(`<script src="src/${demo}.js"></script>`);
   write(`</body>`);
   write(`</html>`);
   res.end(resp);
