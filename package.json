@@ -54,9 +54,11 @@
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "parsegraph-interact": "^1.7.7",
     "parsegraph-scene": "^3.0.0",
-    "parsegraph-showincamera": "^1.7.26"
+    "parsegraph-input": "^2.1.0",
+    "parsegraph-showincamera": "^1.7.26",
+    "parsegraph-blockpainter": "^1.8.0",
+    "parsegraph-font": "^1.7.7"
   },
   "peerDependencies": {
     "parsegraph-checkglerror": "^1.5.8",
