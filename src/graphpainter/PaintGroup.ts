@@ -15,8 +15,8 @@ import {
 import Rect from "parsegraph-rect";
 import NodeRenderData from "./NodeRenderData";
 import { Renderable } from "parsegraph-timingbelt";
-import PaintRun from './PaintRun';
-import PaintedNode from '../artist/PaintedNode';
+import PaintRun from "./PaintRun";
+import PaintedNode from "../artist/PaintedNode";
 import { WorldTransform } from "parsegraph-scene";
 
 let CACHED_RENDERS: number = 0;
