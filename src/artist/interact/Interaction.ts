@@ -2,7 +2,12 @@ import { Keystroke } from "parsegraph-input";
 import Interactive from "./Interactive";
 
 export type KeyListener = (event: Keystroke) => boolean;
-export type DragListener = (worldX:number, worldY:number, dx:number, dy:number) => boolean;
+export type DragListener = (
+  worldX: number,
+  worldY: number,
+  dx: number,
+  dy: number
+) => boolean;
 
 export type EventListener = () => boolean;
 export type FocusListener = (focused: boolean) => boolean;
@@ -59,7 +64,7 @@ export default class Interaction {
     return this._dragListener != null;
   }
 
-  drag(worldX: number, worldY: number, dx: number, dy:number):boolean {
+  drag(worldX: number, worldY: number, dx: number, dy: number): boolean {
     if (!this.hasDragListener()) {
       return false;
     }

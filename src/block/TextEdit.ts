@@ -1,15 +1,19 @@
 import BlockType from "./BlockType";
-import BlockNode from './BlockNode';
-import {DOMContent, DOMContentArtist} from "parsegraph-artist";
+import BlockNode from "./BlockNode";
+import { DOMContent, DOMContentArtist } from "parsegraph-artist";
 
 const domArtist = new DOMContentArtist();
 
-type TextNodeCallback = (val:string)=>Promise<void>;
+type TextNodeCallback = (val: string) => Promise<void>;
 
 export default class TextEditNode extends BlockNode {
   _callback: TextNodeCallback;
 
-  constructor(type: string | BlockType, initialText: string = "", callback: TextNodeCallback = null) {
+  constructor(
+    type: string | BlockType,
+    initialText: string = "",
+    callback: TextNodeCallback = null
+  ) {
     super(type);
 
     const block = this.value();
