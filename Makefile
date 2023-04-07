@@ -5,6 +5,7 @@ SCRIPT_FILES = \
 	src/demo/diagonalBlockDemo.ts \
 	src/demo/viewportDom.ts \
 	src/demo/carouselGraph.ts \
+	src/demo/logo.ts \
 	src/demo/interact.ts \
 	src/demo/html.ts \
 	src/demo/block3d.ts \
@@ -25,7 +26,7 @@ SCRIPT_FILES = \
 	src/glsl.d.ts \
 	src/graphpainter/GraphPainterAnalytics.ts \
 	src/graphpainter/PaintGroup.ts \
-	src/graphpainter/Pizza.ts \
+	src/graphpainter/PaintRun.ts \
 	src/graphpainter/GraphPainter.ts \
 	src/graphpainter/navport/carousel/index.ts \
 	src/graphpainter/navport/carousel/settings.ts \
@@ -78,7 +79,6 @@ SCRIPT_FILES = \
 	src/block/BlockNode.ts \
 	src/block/BlockScene.ts \
 	src/block/index.ts \
-	src/block/logo.ts \
 	src/block/TextEdit.ts \
 	src/block/BlockArtist.ts \
 	src/block/Block.ts \
@@ -88,7 +88,6 @@ SCRIPT_FILES = \
 	src/block/BlockCaret.ts \
 	src/block/Label.ts \
 	src/block/DefaultBlockScene.ts \
-	src/demo.ts \
 	test/test.ts
 
 EXTRA_SCRIPTS = \

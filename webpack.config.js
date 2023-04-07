@@ -14,6 +14,7 @@ module.exports = {
     graphpainter: relDir("src/demo/graphpainter.ts"),
     html: relDir("src/demo/html.ts"),
     interact: relDir("src/demo/interact.ts"),
+    logo: relDir("src/demo/logo.ts"),
     stringtree: relDir("src/demo/stringtree.ts"),
     viewportDom: relDir("src/demo/viewportDom.ts"),
     viewport: relDir("src/demo/viewport.ts"),
