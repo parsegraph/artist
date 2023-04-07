@@ -27,8 +27,8 @@ import BlockStyle, {
 import DefaultBlockScene from "./DefaultBlockScene";
 import DefaultBlockPalette from "./DefaultBlockPalette";
 
-export default Block;
 export {
+  Block,
   DefaultBlockPalette,
   BlockPalette,
   BlockStyle,

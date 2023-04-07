@@ -14,7 +14,7 @@ import Painted from './Painted';
 import PaintedCaret from './PaintedCaret';
 import PaintedNode from './PaintedNode';
 import paintNodeBounds from './paintNodeBounds';
-import paintNodeLines from './paintNodeLines';
+import paintNodeLines, { LinePainter } from './paintNodeLines';
 
 export * from './freezer';
 export * from './interact';
@@ -36,4 +36,5 @@ export {
   PaintedNode,
   paintNodeBounds,
   paintNodeLines,
+  LinePainter
 };
