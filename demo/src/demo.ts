@@ -90,6 +90,38 @@ app.get(root, async (req: any, res: any) => {
   res.end(resp);
 });
 
+app.get(root + "/*.html", (req: any, res: any) => {
+  let resp = "";
+  const write = (text: any) => {
+    resp += text + "\n";
+  };
+
+  const demo = req.path.match(/([^/]+)\.html$/)[1];
+
+  write(`<!DOCTYPE html>`);
+  write(`<html lang="en">`);
+  write(`<head>`);
+  write(`<meta charset="UTF-8">`);
+  write(`<meta http-equiv="X-UA-Compatible" content="IE=edge">`);
+  write(`<meta name="viewport" content="width=device-width, initial-scale=1.0">`);
+  write(`<title>${demo}</title>`);
+  write(`<style>`);
+      write(`body {margin: 0;padding: 0;}`);
+      write(`.parsegraph_Window {width: 100vw;height: 100vh;}`);
+  write(`</style>`);
+  write(`</head>`);
+  write(`<body>`);
+    write(`<div style="width: 100vw; height: 100vh">`);
+        write(`<div style="width: 100%; height: 100%" id="demo"></div>`);
+    write(`</div>`);
+    write(`<script src="parsegraph-log.js"></script>`);
+    write(`<script src="parsegraph-checkglerror.js"></script>`);
+    write(`<script src="src/${demo}.js"></script>`);
+  write(`</body>`);
+  write(`</html>`);
+  res.end(resp);
+});
+
 app.use(root, express.static("../src"));
 app.use(root, express.static("../dist"));
 app.use(root, express.static("../www"));
