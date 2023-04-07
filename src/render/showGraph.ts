@@ -1,6 +1,5 @@
-import { PaintedNode } from "parsegraph-artist";
-import Viewport from "./navport/Navport";
-import SingleScreenViewportDisplayMode from "./navport/displaymode/single";
+import { PaintedNode } from "../artist";
+import { Navport, SingleScreenViewportDisplayMode } from "../navport";
 import render from "./render";
 
 /**

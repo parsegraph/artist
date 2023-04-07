@@ -6,7 +6,7 @@ import {
   getMouseImpulseAdjustment,
   getWheelImpulseAdjustment,
 } from "./impulse";
-import { PaintedNode } from "parsegraph-artist";
+import { PaintedNode } from "../artist";
 import { logc } from "parsegraph-log";
 import { INTERVAL } from "parsegraph-timingbelt";
 import { MIN_CAMERA_SCALE } from "./Navport";

@@ -1,5 +1,5 @@
 import { Direction, Alignment } from "parsegraph-direction";
-import { PaintedNode } from "parsegraph-artist";
+import { PaintedNode } from "../artist";
 import Navport from "./Navport";
 import AnimatedSpotlight from "parsegraph-animatedspotlight";
 import { Projector } from "parsegraph-projector";

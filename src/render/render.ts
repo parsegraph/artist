@@ -5,12 +5,13 @@ import {
   Projected,
   Projection,
 } from "parsegraph-projector";
-import Viewport from "./navport/Navport";
-import { PaintedNode } from "parsegraph-artist";
-import SingleScreenViewportDisplayMode from "./navport/displaymode/single";
-import FullscreenViewportDisplayMode from "./navport/displaymode/fullscreen";
-import FixedWidthViewportDisplayMode from "./navport/displaymode/fixed";
-import FitInWindowViewportDisplayMode from "./navport/displaymode/fit";
+import { Navport,
+  SingleScreenViewportDisplayMode,
+  FullscreenViewportDisplayMode,
+  FixedWidthViewportDisplayMode,
+  FitInWindowViewportDisplayMode,
+} from "../navport";
+import { PaintedNode } from "../artist";
 import Color from "parsegraph-color";
 
 export default function render(
@@ -41,7 +42,7 @@ export function renderFullscreen(
 ) {
   return render(
     container,
-    new Viewport(new FullscreenViewportDisplayMode(), root, bg)
+    new Navport(new FullscreenViewportDisplayMode(), root, bg)
   );
 }
 
@@ -52,7 +53,7 @@ export function renderSingleScreen(
 ) {
   return render(
     container,
-    new Viewport(new SingleScreenViewportDisplayMode(), root, bg)
+    new Navport(new SingleScreenViewportDisplayMode(), root, bg)
   );
 }
 
@@ -65,7 +66,7 @@ export function renderFixedWidth(
 ) {
   return render(
     container,
-    new Viewport(new FixedWidthViewportDisplayMode(w, h), root, bg)
+    new Navport(new FixedWidthViewportDisplayMode(w, h), root, bg)
   );
 }
 
@@ -76,6 +77,6 @@ export function renderFitInWindow(
 ) {
   return render(
     container,
-    new Viewport(new FitInWindowViewportDisplayMode(), root, bg)
+    new Navport(new FitInWindowViewportDisplayMode(), root, bg)
   );
 }

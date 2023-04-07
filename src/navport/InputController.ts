@@ -1,5 +1,5 @@
 import { INTERVAL } from "parsegraph-timingbelt";
-import { PaintedNode } from "parsegraph-artist";
+import { PaintedNode } from "../artist";
 import Navport from "./Navport";
 import { Projector } from "parsegraph-projector";
 

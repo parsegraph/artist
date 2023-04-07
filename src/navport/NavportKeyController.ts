@@ -1,7 +1,7 @@
 import { Keystroke } from "parsegraph-input";
 import { matrixTransform2D, makeInverse3x3 } from "parsegraph-matrix";
 import NavportCursor from "./NavportCursor";
-import { PaintedNode } from "parsegraph-artist";
+import { PaintedNode } from "../artist";
 import { Direction } from "parsegraph-direction";
 import { KeyController } from "parsegraph-input";
 import { MIN_CAMERA_SCALE } from "./Navport";

@@ -4,3 +4,4 @@ export * from "./block";
 export * from "./dom";
 export * from "./carousel";
 export * from "./navport";
+export * from "./render";
