@@ -4210,19 +4210,10 @@ parsegraph-gettimeinmillis@^1.4.9:
   resolved "https://registry.yarnpkg.com/parsegraph-gettimeinmillis/-/parsegraph-gettimeinmillis-1.4.9.tgz#2b921d515b1cf767d8a84447e8c7d0376b344d86"
   integrity sha512-az+nImOhRkRJDUyn/QgA5Pgb7aSIeXlHL3i+hBPFxCD9cVRFy99MxKrcqxaRCQqcg2vFtP1GhacbkWx598vwtw==
 
-parsegraph-input@^2.0.12:
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/parsegraph-input/-/parsegraph-input-2.0.12.tgz#f2f91d203ac09a5c02cf8b86739f232cc3058c98"
-  integrity sha512-oFfHgbHo+Nd19YxjJZUensF9o6Txc8Hmyv9B70JXKIXQwcR4t3xpRsWPRqPf6T38zqgUMQszhLTPGPyGbO3hMg==
-  dependencies:
-    parsegraph-fuzzyequals "^1.4.13"
-    parsegraph-matrix "^1.4.16"
-    parsegraph-normalizewheel "^1.4.10"
-
-parsegraph-input@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/parsegraph-input/-/parsegraph-input-2.1.0.tgz#955b2f98d14e62545d14d0e69a33c60ad3db2652"
-  integrity sha512-cphSrd5jp4sLTdHQy84MttvK7z4ZFtpit4PlYvJLj2+4HDMimGGuIcHVnNYnLtCVvSnTEvQ7EuLAHdEmAsfqpg==
+parsegraph-input@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/parsegraph-input/-/parsegraph-input-2.3.0.tgz#4f76a1a52cca35a3ca173f95b6e6b1c936aeeff7"
+  integrity sha512-aQFua2CFlGz0hWWfrxUQSzJnRRL0rAoUGG9ZL2Tg81o6ls+PSZSbD9HXV4B0pCi9FvFKvoHpe8RA4al72UkXyg==
   dependencies:
     parsegraph-fuzzyequals "^1.4.13"
     parsegraph-matrix "^1.4.16"
@@ -4290,13 +4281,13 @@ parsegraph-rect@^1.5.5:
   resolved "https://registry.yarnpkg.com/parsegraph-rect/-/parsegraph-rect-1.5.5.tgz#88d7b837829237f3ec668e2eb59bd607d64c070c"
   integrity sha512-azp7JM7XRIqAvSgZyrb9apLOs9o7LvTNc1cl/b7R1ZvZJ8BHoyTYxyRcq43/QoRwthqg73li9B4smE3uPa8mPw==
 
-parsegraph-scene@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/parsegraph-scene/-/parsegraph-scene-3.0.0.tgz#777b921a8a847811c1a216dd4eea9e781c1b54dd"
-  integrity sha512-/eIBb8LsCcNeZRqE3tf2Hta0RHfjXNUdWCeSlvRWV5zYnjvobVseNoBd4AFIuSDihNGsvzLMPzpdoIun/7alXg==
+parsegraph-scene@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/parsegraph-scene/-/parsegraph-scene-4.0.0.tgz#6d9d507f9eaaba0d319c9c3ce087a4d8d65b12b4"
+  integrity sha512-st8dbcCDxDCDVFa6EUlIEWiYZeX4CtXD/4VL8xmkZ/k7SMwek4UWOOg2TBeKRl/r1DsQ1rJocr4YvGDpQ2d4Fw==
   dependencies:
     parsegraph-camera "^1.4.24"
-    parsegraph-input "^2.0.12"
+    parsegraph-input "^2.3.0"
     parsegraph-projector "^1.14.12"
 
 parsegraph-shader@^1.5.11:

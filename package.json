@@ -59,9 +59,8 @@
     "parsegraph-blockpainter": "^1.8.0",
     "parsegraph-fanpainter": "^1.6.21",
     "parsegraph-font": "^1.7.7",
-    "parsegraph-input": "^2.1.0",
     "parsegraph-lerp": "^1.5.12",
-    "parsegraph-scene": "^3.0.0",
+    "parsegraph-scene": "^4.0.0",
     "parsegraph-showincamera": "^1.7.26",
     "parsegraph-smoothstep": "^1.4.9"
   },
