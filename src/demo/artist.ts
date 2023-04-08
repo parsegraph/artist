@@ -2,15 +2,14 @@ import Size from "parsegraph-size";
 import Direction, { DirectionNode } from "parsegraph-direction";
 import { Projector, BasicProjector } from "parsegraph-projector";
 import TimingBelt from "parsegraph-timingbelt";
-import Pizza from "./Pizza";
-import BasicPainted, {
+import Color from "parsegraph-color";
+import { PaintRun, BasicPainted,
   MIN_BLOCK_WIDTH,
   MIN_BLOCK_HEIGHT,
-} from "./BasicPainted";
-import RenderArtist from "./RenderArtist";
-import paintNodeLines from "./paintNodeLines";
-import paintNodeBounds from "./paintNodeBounds";
-import Color from "parsegraph-color";
+  RenderArtist,
+  paintNodeLines,
+  paintNodeBounds,
+} from "..";
 
 const s = 50;
 
@@ -103,15 +102,15 @@ document.addEventListener("DOMContentLoaded", () => {
     proj.overlay().resetTransform();
     proj.overlay().translate(proj.width() / 2, proj.height() / 2);
     proj.render();
-    belt.addRenderable(pizza);
+    belt.addRenderable(paintRun);
   }, 0);
 
-  const pizza = new Pizza(proj);
-  pizza.populate(makeNode());
+  const paintRun = new PaintRun(proj);
+  paintRun.populate(makeNode());
 
   const refresh = () => {
     const n = buildGraph();
-    pizza.populate(n);
+    paintRun.populate(n);
     proj.overlay().resetTransform();
     proj.overlay().clearRect(0, 0, proj.width(), proj.height());
     proj.overlay().translate(proj.width() / 2, proj.height() / 2);

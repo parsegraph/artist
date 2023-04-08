@@ -24,7 +24,7 @@ export default class NavportWebOverlay implements Projected {
     this._size = pct;
   }
 
-  tick(startDate: number): boolean {
+  tick(_cycleStart: number): boolean {
     return false;
   }
 
@@ -67,7 +67,7 @@ export default class NavportWebOverlay implements Projected {
     this.scheduleUpdate();
   }
 
-  paint(projector: Projector, timeout?: number) {
+  paint(projector: Projector, _timeout?: number) {
     if (!this.url()) {
       return false;
     }

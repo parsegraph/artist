@@ -1,22 +1,37 @@
 import { Direction, Alignment } from "parsegraph-direction";
 import { PaintedNode } from "../artist";
-import Navport from "./Navport";
 import AnimatedSpotlight from "parsegraph-animatedspotlight";
-import { Projector } from "parsegraph-projector";
+import { Projector, Projected } from "parsegraph-projector";
 import { logc } from "parsegraph-log";
+import { Carousel } from "../carousel";
+import Method from 'parsegraph-method';
+import Camera from 'parsegraph-camera';
 
-export default class NavportCursor {
+export default class NavportCursor implements Projected {
   _focusedNode: PaintedNode;
-  _nav: Navport;
   _spotlight: AnimatedSpotlight;
   _showSpotlight: boolean;
+  _carousel: Carousel;
+  _onRepaint: Method;
+  _onFocusedNodeChanged: Method;
+  _camera: Camera;
 
-  constructor(navport: Navport) {
-    this._nav = navport;
+  constructor() {
     this._focusedNode = null;
+    this._camera = null;
 
     this._spotlight = new AnimatedSpotlight();
     this._showSpotlight = false;
+    this._onRepaint = new Method();
+    this._onFocusedNodeChanged = new Method();
+  }
+
+  unmount(proj: Projector) {
+    this.spotlight().unmount(proj);
+  }
+
+  dispose() {
+    this.spotlight().dispose();
   }
 
   showSpotlight() {
@@ -35,12 +50,12 @@ export default class NavportCursor {
     return this._spotlight;
   }
 
-  nav() {
-    return this._nav;
+  carousel() {
+    return this._carousel;
   }
 
-  carousel() {
-    return this.nav().carousel();
+  setCarousel(carousel: Carousel) {
+    this._carousel = carousel;
   }
 
   focusedNode(): PaintedNode {
@@ -48,7 +63,20 @@ export default class NavportCursor {
   }
 
   camera() {
-    return this.nav().camera();
+    return this._camera;
+  }
+
+  setCamera(camera: Camera) {
+    this._camera = camera;
+    this.scheduleUpdate();
+  }
+
+  scheduleUpdate() {
+    this._onRepaint.call();
+  }
+
+  setOnScheduleUpdate(update: ()=>void) {
+    this._onRepaint.set(update);
   }
 
   setFocusedNode(focusedNode: PaintedNode) {
@@ -57,14 +85,18 @@ export default class NavportCursor {
     }
     this._focusedNode = focusedNode;
     if (this._focusedNode) {
-      this.nav().focusedNodeChanged();
       this.carousel().clearCarousel();
       this.carousel().hideCarousel();
       this.carousel().scheduleCarouselRepaint();
       this._spotlight.restart(this._focusedNode);
     }
-    this.nav().scheduleRepaint();
+    this._onFocusedNodeChanged.call();
+    this.scheduleUpdate();
     return true;
+  }
+
+  setOnFocusedNodeChanged(update: ()=>void) {
+    this._onFocusedNodeChanged.set(update);
   }
 
   moveToEnd(dir: Direction): boolean {
@@ -75,8 +107,8 @@ export default class NavportCursor {
     return moved;
   }
 
-  moveForwardly(skipHorizontalInward?: boolean, event?: any): boolean {
-    let node = this._focusedNode;
+  moveForwardly(skipHorizontalInward?: boolean): boolean {
+    let node = this.focusedNode();
     if (!node) {
       return false;
     }
@@ -126,10 +158,10 @@ export default class NavportCursor {
   }
 
   moveFocus(dir: Direction): boolean {
-    if (!this._focusedNode) {
+    if (!this.focusedNode()) {
       return false;
     }
-    const neighbor = this._focusedNode.nodeAt(dir);
+    const neighbor = this.focusedNode().nodeAt(dir);
     if (neighbor) {
       this.setFocusedNode(neighbor);
       return true;
@@ -137,7 +169,7 @@ export default class NavportCursor {
     return false;
   }
 
-  update(_: Date) {
+  tick(_cycleStart: number) {
     let needsUpdate = false;
     if (this.focusedNode()) {
       if (this.isSpotlightShown() && this._spotlight.animating()) {
@@ -150,8 +182,8 @@ export default class NavportCursor {
 
   paint(projector: Projector) {
     if (
-      !this._focusedNode ||
-      this._focusedNode.value().getLayout().needsPosition()
+      !this.focusedNode() ||
+      this.focusedNode().value().getLayout().needsPosition()
     ) {
       return false;
     }
@@ -161,6 +193,9 @@ export default class NavportCursor {
   }
 
   render(proj: Projector) {
+    if (!this.camera()) {
+      return false;
+    }
     const gl = proj.glProvider().gl();
     if (this.focusedNode()) {
       const layout = this.focusedNode().value().getLayout();

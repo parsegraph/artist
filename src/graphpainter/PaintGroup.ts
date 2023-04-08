@@ -4,7 +4,6 @@ import { Projector } from "parsegraph-projector";
 import { Projected } from "parsegraph-projector";
 import Method from "parsegraph-method";
 import { WorldLabels } from "parsegraph-scene";
-
 import {
   makeScale3x3I,
   makeTranslation3x3I,
@@ -13,11 +12,12 @@ import {
   matrixIdentity3x3,
 } from "parsegraph-matrix";
 import Rect from "parsegraph-rect";
-import NodeRenderData from "./NodeRenderData";
 import { Renderable } from "parsegraph-timingbelt";
+import { WorldTransform } from "parsegraph-scene";
+
+import NodeRenderData from "./NodeRenderData";
 import PaintRun from "./PaintRun";
 import { PaintedNode } from "../artist";
-import { WorldTransform } from "parsegraph-scene";
 
 let CACHED_RENDERS: number = 0;
 let IMMEDIATE_RENDERS: number = 0;

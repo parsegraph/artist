@@ -1,7 +1,6 @@
 import Camera from "parsegraph-camera";
 import { Carousel } from "../carousel";
 import InputController from "./InputController";
-import BurgerMenu from "./BurgerMenu";
 import CameraFilter from "./CameraFilter";
 import { BasicProjector, Projected, Projector } from "parsegraph-projector";
 import { PaintedNode } from "../artist";
@@ -14,14 +13,11 @@ import log, { logc } from "parsegraph-log";
 import { Layout } from "parsegraph-layout";
 import { showNodeInCamera } from "parsegraph-showincamera";
 
-export const FOCUS_SCALE = 2;
-
 export const MIN_CAMERA_SCALE = 0.00125;
 
 export interface ViewportDisplayMode {
   render(projector: Projector, nav: Navport): boolean;
   allowSplit(projector: Projector, nav: Navport): boolean;
-  showMenu(projector: Projector, nav: Navport): boolean;
 }
 export default class Navport implements Projected {
   _root: PaintedNode;
@@ -31,10 +27,8 @@ export default class Navport implements Projected {
   _carousel: Carousel;
   _webOverlay: NavportWebOverlay;
   _input: InputController;
-  _menu: BurgerMenu;
   _renderedMouse: number;
   _needsRender: boolean;
-  _focusScale: number;
   _backgroundColor: Color;
   _needsRepaint: boolean;
   _displayMode: ViewportDisplayMode;
@@ -65,15 +59,28 @@ export default class Navport implements Projected {
 
     this._inputLayer = new Map();
 
-    this._menu = new BurgerMenu(this);
-
     // this._piano = new AudioKeyboard(this._camera);
     this._renderedMouse = -1;
     this._needsRender = true;
 
-    this._focusScale = FOCUS_SCALE;
-
     this._unmount = null;
+  }
+
+  resetCamera(complete?: boolean) {
+    const defaultScale = 0.25;
+    const cam = this.camera();
+    let x = this.width() / 2;
+    let y = this.height() / 2;
+    if (!complete && cam.x() === x && cam.y() === y) {
+      cam.setScale(defaultScale);
+    } else {
+      if (complete) {
+        cam.setScale(defaultScale);
+      }
+      x = this.width() / (2 * defaultScale);
+      y = this.height() / (2 * defaultScale);
+      cam.setOrigin(x, y);
+    }
   }
 
   lastMouseX() {
@@ -141,10 +148,6 @@ export default class Navport implements Projected {
     return this._carousel;
   }
 
-  menu() {
-    return this._menu;
-  }
-
   camera() {
     return this._camera;
   }
@@ -154,7 +157,6 @@ export default class Navport implements Projected {
   }
 
   dispose() {
-    this._menu.dispose();
     if (this._unmount !== null) {
       this._unmount();
       this._unmount = null;
@@ -297,24 +299,6 @@ export default class Navport implements Projected {
     this.scheduleRender();
   }
 
-  setFocusScale(scale: number) {
-    // console.log("Focus scale is changing: " + scale);
-    this._focusScale = scale;
-    this.scheduleRender();
-  }
-
-  getFocusScale() {
-    // console.log("Reading focus scale: " + this._focusScale);
-    return this._focusScale;
-  }
-
-  getRequiredScale() {
-    return (
-      this.getFocusScale() /
-      this.focusedNode().value().getLayout().absoluteScale()
-    );
-  }
-
   cameraFilter() {
     return this._cameraFilter;
   }
@@ -398,13 +382,6 @@ export default class Navport implements Projected {
       cam.setOrigin(x, y);
       cam.setScale(1 / window.visualViewport.scale);
       this._carousel.render(inputProj);
-    }
-    if (
-      !projector.isOffscreen() &&
-      this._displayMode?.showMenu(projector, this)
-    ) {
-      this._menu.paint(inputProj);
-      this._menu.render(inputProj);
     }
 
     needsUpdate = this.web().render(projector) || needsUpdate;

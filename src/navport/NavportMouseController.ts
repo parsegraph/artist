@@ -2,10 +2,6 @@
 import { makeInverse3x3, matrixTransform2D } from "parsegraph-matrix";
 import { BasicMouseController } from "parsegraph-input";
 import Navport from "./Navport";
-import {
-  getMouseImpulseAdjustment,
-  getWheelImpulseAdjustment,
-} from "./impulse";
 import { PaintedNode } from "../artist";
 import { logc } from "parsegraph-log";
 import { INTERVAL } from "parsegraph-timingbelt";
@@ -52,7 +48,7 @@ export default class NavportMouseController extends BasicMouseController {
     return this.nav().carousel();
   }
 
-  update(t: Date) {
+  tick(_cycleStart: number) {
     const needsUpdate = this.nav().mouseVersion() !== this.mouseVersion();
     if (needsUpdate) {
       logc("Schedule updates", "Mouse needs update");
@@ -68,13 +64,6 @@ export default class NavportMouseController extends BasicMouseController {
       }
     }
     this.mouseChanged();
-    /* this.nav()
-      .input()
-      .impulse()
-      .addImpulse(
-        getMouseImpulseAdjustment() * -dx,
-        getMouseImpulseAdjustment() * -dy
-      );*/
     const camera = this.nav().camera();
     camera.adjustOrigin(dx / camera.scale(), dy / camera.scale());
     this.scheduleRepaint();

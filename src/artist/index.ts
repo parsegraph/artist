@@ -10,7 +10,7 @@ import BasicPainted, {
 import computeInnerPos from "./computeInnerPos";
 import fromNode from "./fromNode";
 import NodeValues from "./NodeValues";
-import Painted from "./Painted";
+import Painted, { WorldRenderable, Transformed } from "./Painted";
 import PaintedCaret from "./PaintedCaret";
 import PaintedNode from "./PaintedNode";
 import paintNodeBounds from "./paintNodeBounds";
@@ -32,6 +32,8 @@ export {
   fromNode,
   NodeValues,
   Painted,
+  WorldRenderable,
+  Transformed,
   PaintedCaret,
   PaintedNode,
   paintNodeBounds,

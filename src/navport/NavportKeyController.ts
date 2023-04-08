@@ -1,9 +1,12 @@
 import { Keystroke } from "parsegraph-input";
 import { matrixTransform2D, makeInverse3x3 } from "parsegraph-matrix";
-import NavportCursor from "./NavportCursor";
-import { PaintedNode } from "../artist";
 import { Direction } from "parsegraph-direction";
 import { KeyController } from "parsegraph-input";
+import {KeyTimer} from "parsegraph-scene";
+import Camera from 'parsegraph-camera';
+
+import NavportCursor from "./NavportCursor";
+import { PaintedNode } from "../artist";
 import { MIN_CAMERA_SCALE } from "./Navport";
 
 const RESET_CAMERA_KEY = "Escape";
@@ -28,36 +31,37 @@ const ZOOM_OUT_KEY = "ZoomOut";
 
 const KEY_CAMERA_FREE_MOVE = true;
 
+export const FOCUS_SCALE = 2;
+
 export default class NavportKeyController implements KeyController {
-  keydowns: { [id: string]: Date };
+  _keys: KeyTimer;
   _cursor: NavportCursor;
+  _focusScale: number;
+  _camera: Camera;
 
-  constructor(cursor: NavportCursor) {
-    // A map of keyName's to a true value.
+  setFocusScale(scale: number) {
+    // console.log("Focus scale is changing: " + scale);
+    this._focusScale = scale;
+  }
+
+  getFocusScale() {
+    // console.log("Reading focus scale: " + this._focusScale);
+    return this._focusScale;
+  }
+
+  getRequiredScale() {
+    return (
+      this.getFocusScale() /
+      this.focusedNode()?.value().getLayout().absoluteScale()
+    );
+  }
+
+  constructor(cursor: NavportCursor, camera: Camera) {
     this._cursor = cursor;
-    this.keydowns = {};
-  }
+    this._camera = camera;
+    this._keys = new KeyTimer();
+    this._focusScale = FOCUS_SCALE;
 
-  lastMouseX() {
-    return this.cursor().nav().input().mouse().lastMouseX();
-  }
-
-  lastMouseY() {
-    return this.cursor().nav().input().mouse().lastMouseX();
-  }
-
-  getKey(key: string) {
-    return this.keydowns[key] ? 1 : 0;
-  }
-
-  keyElapsed(key: string, t: Date) {
-    const v = this.keydowns[key];
-    if (!v) {
-      return 0;
-    }
-    const elapsed = (t.getTime() - v.getTime()) / 1000;
-    this.keydowns[key] = t;
-    return elapsed;
   }
 
   cursor() {
@@ -65,7 +69,7 @@ export default class NavportKeyController implements KeyController {
   }
 
   scheduleRepaint() {
-    this._cursor.nav().scheduleRepaint();
+    this._cursor.scheduleRepaint();
   }
 
   carousel() {
@@ -80,7 +84,6 @@ export default class NavportKeyController implements KeyController {
     if (!event.name().length) {
       return false;
     }
-    // this.nav().showInCamera(null);
 
     if (this.carousel().carouselKey(event)) {
       return true;
@@ -90,11 +93,7 @@ export default class NavportKeyController implements KeyController {
       return this.focusKey(event);
     }
 
-    if (this.keydowns[event.name()]) {
-      // Already processed.
-      return true;
-    }
-    this.keydowns[event.name()] = new Date();
+    this._keys.keydown(event);
 
     if (this.navKey(event)) {
       this.scheduleRepaint();
@@ -105,11 +104,7 @@ export default class NavportKeyController implements KeyController {
   }
 
   keyup(event: Keystroke) {
-    if (!this.keydowns[event.name()]) {
-      // Already processed.
-      return;
-    }
-    delete this.keydowns[event.name()];
+    this._keys.keyup(event);
 
     switch (event.name()) {
       case CLICK_KEY:
@@ -136,42 +131,30 @@ export default class NavportKeyController implements KeyController {
     return false;
   }
 
-  clearImpulse() {
-    this.nav().input().impulse().clearImpulse();
-  }
-
   focusMovementNavKey(event: Keystroke): boolean {
     switch (event.name()) {
       case MOVE_BACKWARD_KEY:
-        this.clearImpulse();
         this.cursor().moveOutwardly(Direction.BACKWARD);
         break;
       case MOVE_FORWARD_KEY:
-        this.clearImpulse();
         this.cursor().moveForwardly(true);
         break;
       case MOVE_TO_DOWNWARD_END_KEY:
-        this.clearImpulse();
         this.cursor().moveToEnd(Direction.DOWNWARD);
         break;
       case MOVE_TO_UPWARD_END_KEY:
-        this.clearImpulse();
         this.cursor().moveToEnd(Direction.UPWARD);
         break;
       case MOVE_TO_FORWARD_END_KEY:
-        this.clearImpulse();
         this.cursor().moveToEnd(Direction.FORWARD);
         break;
       case MOVE_TO_BACKWARD_END_KEY:
-        this.clearImpulse();
         this.cursor().moveToEnd(Direction.BACKWARD);
         break;
       case MOVE_DOWNWARD_KEY:
-        this.clearImpulse();
         this.cursor().moveInwardly(Direction.DOWNWARD);
         break;
       case MOVE_UPWARD_KEY:
-        this.clearImpulse();
         this.cursor().moveOutwardly(Direction.UPWARD);
         break;
       case "Backspace":
@@ -189,7 +172,6 @@ export default class NavportKeyController implements KeyController {
     }
     switch (event.name()) {
       case "Tab":
-        this.clearImpulse();
         const toNode = event.shiftKey()
           ? this.focusedNode().value().interact().prevInteractive()
           : this.focusedNode().value().interact().nextInteractive();
@@ -199,7 +181,6 @@ export default class NavportKeyController implements KeyController {
         }
         break;
       case "Enter":
-        this.clearImpulse();
         if (this.focusedNode().value().interact().hasKeyListener()) {
           if (this.focusedNode().value().interact().key(event)) {
             // Node handled it.
@@ -219,18 +200,15 @@ export default class NavportKeyController implements KeyController {
           break;
         }
       case CLICK_KEY:
-        this.clearImpulse();
         this.focusedNode().value().interact().click();
         this.scheduleRepaint();
         return true;
       case ZOOM_IN_KEY:
-        this.clearImpulse();
-        this.nav().setFocusScale((1 / 1.1) * this.nav().getFocusScale());
+        this.setFocusScale((1 / 1.1) * this.getFocusScale());
         this.scheduleRepaint();
         return true;
       case ZOOM_OUT_KEY:
-        this.clearImpulse();
-        this.nav().setFocusScale(1.1 * this.nav().getFocusScale());
+        this.setFocusScale(1.1 * this.getFocusScale());
         this.scheduleRepaint();
         return true;
       case RESET_CAMERA_KEY:
@@ -239,10 +217,6 @@ export default class NavportKeyController implements KeyController {
       default:
         return false;
     }
-  }
-
-  nav() {
-    return this.cursor().nav();
   }
 
   focusKey(event: Keystroke) {
@@ -298,14 +272,31 @@ export default class NavportKeyController implements KeyController {
   }
 
   camera() {
-    return this.nav().camera();
+    return this._camera;
   }
 
   nodeUnderCursor(): PaintedNode {
     return this.focusedNode();
   }
 
-  update(t: Date) {
+  resetCamera(complete?: boolean) {
+    const defaultScale = 0.25;
+    const cam = this.camera();
+    let x = cam.width() / 2;
+    let y = cam.height() / 2;
+    if (!complete && cam.x() === x && cam.y() === y) {
+      cam.setScale(defaultScale);
+    } else {
+      if (complete) {
+        cam.setScale(defaultScale);
+      }
+      x = cam.width() / (2 * defaultScale);
+      y = cam.height() / (2 * defaultScale);
+      cam.setOrigin(x, y);
+    }
+  }
+
+  tick(t: number) {
     const cam = this.camera();
     const xSpeed = 1000 / cam.scale();
     const ySpeed = 1000 / cam.scale();
@@ -313,45 +304,46 @@ export default class NavportKeyController implements KeyController {
 
     let needsUpdate = false;
 
-    if (this.getKey(RESET_CAMERA_KEY)) {
-      this.nav().input().resetCamera(false);
+    const keys = this._keys;
+    if (keys.getKey(RESET_CAMERA_KEY)) {
+      this.resetCamera(false);
       needsUpdate = true;
     }
 
     if (
-      this.getKey(MOVE_BACKWARD_KEY) ||
-      this.getKey(MOVE_FORWARD_KEY) ||
-      this.getKey(MOVE_UPWARD_KEY) ||
-      this.getKey(MOVE_DOWNWARD_KEY)
+      keys.getKey(MOVE_BACKWARD_KEY) ||
+      keys.getKey(MOVE_FORWARD_KEY) ||
+      keys.getKey(MOVE_UPWARD_KEY) ||
+      keys.getKey(MOVE_DOWNWARD_KEY)
     ) {
       // console.log("Moving");
       const x =
         cam.x() +
-        (this.keyElapsed(MOVE_BACKWARD_KEY, t) * xSpeed +
-          this.keyElapsed(MOVE_FORWARD_KEY, t) * -xSpeed);
+        (keys.keyElapsed(MOVE_BACKWARD_KEY, t) * xSpeed +
+          keys.keyElapsed(MOVE_FORWARD_KEY, t) * -xSpeed);
       const y =
         cam.y() +
-        (this.keyElapsed(MOVE_UPWARD_KEY, t) * ySpeed +
-          this.keyElapsed(MOVE_DOWNWARD_KEY, t) * -ySpeed);
+        (keys.keyElapsed(MOVE_UPWARD_KEY, t) * ySpeed +
+          keys.keyElapsed(MOVE_DOWNWARD_KEY, t) * -ySpeed);
       cam.setOrigin(x, y);
       needsUpdate = true;
     }
 
-    if (this.getKey(ZOOM_OUT_KEY)) {
+    if (keys.getKey(ZOOM_OUT_KEY)) {
       // console.log("Continuing to zoom out");
       needsUpdate = true;
       cam.zoomToPoint(
-        Math.pow(1.1, scaleSpeed * this.keyElapsed(ZOOM_OUT_KEY, t)),
+        Math.pow(1.1, scaleSpeed * keys.keyElapsed(ZOOM_OUT_KEY, t)),
         cam.width() / 2,
         cam.height() / 2
       );
     }
-    if (this.getKey(ZOOM_IN_KEY)) {
+    if (keys.getKey(ZOOM_IN_KEY)) {
       // console.log("Continuing to zoom in");
       needsUpdate = true;
       if (cam.scale() >= MIN_CAMERA_SCALE) {
         cam.zoomToPoint(
-          Math.pow(1.1, -scaleSpeed * this.keyElapsed(ZOOM_IN_KEY, t)),
+          Math.pow(1.1, -scaleSpeed * keys.keyElapsed(ZOOM_IN_KEY, t)),
           cam.width() / 2,
           cam.height() / 2
         );

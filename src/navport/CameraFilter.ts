@@ -132,7 +132,7 @@ export default class CameraFilter extends Animator {
    *
    * @return {boolean} true if another frame is needed (i.e. animating)
    */
-  render() {
+  render(): boolean {
     if (!this.animating()) {
       return false;
     }

@@ -5,7 +5,8 @@ import {
   Projected,
   Projection,
 } from "parsegraph-projector";
-import { Navport,
+import {
+  Navport,
   SingleScreenViewportDisplayMode,
   FullscreenViewportDisplayMode,
   FixedWidthViewportDisplayMode,

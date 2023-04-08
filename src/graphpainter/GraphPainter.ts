@@ -3,7 +3,7 @@ import GraphPainterAnalytics from "./GraphPainterAnalytics";
 
 import log, { logc, logEnter, logEnterc, logLeave } from "parsegraph-log";
 import { PaintedNode } from "../artist";
-import { WorldLabels } from "parsegraph-scene";
+import { WorldLabels, WorldTransform } from "parsegraph-scene";
 import { Projector, Projected } from "parsegraph-projector";
 import Method from "parsegraph-method";
 import PaintGroup from "./PaintGroup";
@@ -286,11 +286,7 @@ export default class GraphPainter implements Projected {
 
     this.labels().render(
       projector,
-      -camera.x() + camera.width() / camera.scale() / 2,
-      -camera.y() + camera.height() / camera.scale() / 2,
-      camera.width() / camera.scale(),
-      camera.height() / camera.scale(),
-      camera.scale() / window.visualViewport.scale
+      WorldTransform.fromCamera(camera)
     );
 
     analytics.recordCompletion();
