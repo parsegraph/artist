@@ -1,6 +1,6 @@
 import { DirectionNode } from "parsegraph-direction";
 import { Projector } from "parsegraph-projector";
-import { AbstractScene } from "parsegraph-scene";
+import { WorldTransformScene } from "parsegraph-scene";
 
 import { Artist, NodeValues } from "../artist";
 
@@ -9,7 +9,7 @@ export type RenderFunc<Model> = (
   val: DirectionNode<Model>
 ) => boolean;
 
-export class RenderScene<Model> extends AbstractScene {
+export class RenderScene<Model> extends WorldTransformScene {
   _renderFunc: RenderFunc<Model>;
   _values: NodeValues<Model>;
 
@@ -38,7 +38,7 @@ export class RenderScene<Model> extends AbstractScene {
     if (!this.hasRenderFunc()) {
       return false;
     }
-    let needsUpdate = false;
+    let needsUpdate = super.render();
     this.values().forEach((val) => {
       needsUpdate = this._renderFunc(this.projector(), val) || needsUpdate;
     });

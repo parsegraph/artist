@@ -2,8 +2,8 @@ import { Keystroke } from "parsegraph-input";
 import { matrixTransform2D, makeInverse3x3 } from "parsegraph-matrix";
 import { Direction } from "parsegraph-direction";
 import { KeyController } from "parsegraph-input";
-import {KeyTimer} from "parsegraph-scene";
-import Camera from 'parsegraph-camera';
+import { KeyTimer } from "parsegraph-scene";
+import Camera from "parsegraph-camera";
 
 import NavportCursor from "./NavportCursor";
 import { PaintedNode } from "../artist";
@@ -61,7 +61,6 @@ export default class NavportKeyController implements KeyController {
     this._camera = camera;
     this._keys = new KeyTimer();
     this._focusScale = FOCUS_SCALE;
-
   }
 
   cursor() {

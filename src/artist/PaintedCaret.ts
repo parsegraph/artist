@@ -6,7 +6,7 @@ import Direction, {
 import Freezer from "./freezer/Freezer";
 import { EventListener, FocusListener, KeyListener } from "./interact";
 import Painted from "./Painted";
-import { WorldRenderable } from "parsegraph-scene";
+import { WorldRenderable } from "./Painted";
 
 export default class PaintedCaret<
   Model extends Painted<Model, View>,

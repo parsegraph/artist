@@ -2,7 +2,13 @@ import { WorldTransform } from "parsegraph-scene";
 import Method from "parsegraph-method";
 import { Projector, SharedProjector } from "parsegraph-projector";
 
-import { Artist, NodeValues, WorldRenderable, Painted, PaintedNode } from "../artist";
+import {
+  Artist,
+  NodeValues,
+  WorldRenderable,
+  Painted,
+  PaintedNode,
+} from "../artist";
 
 export default class PaintRun<
   Model extends Painted<Model, View> = any,

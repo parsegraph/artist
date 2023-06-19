@@ -3,7 +3,9 @@ import Direction, { DirectionNode } from "parsegraph-direction";
 import { Projector, BasicProjector } from "parsegraph-projector";
 import TimingBelt from "parsegraph-timingbelt";
 import Color from "parsegraph-color";
-import { PaintRun, BasicPainted,
+import {
+  PaintRun,
+  BasicPainted,
   MIN_BLOCK_WIDTH,
   MIN_BLOCK_HEIGHT,
   RenderArtist,

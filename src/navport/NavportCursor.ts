@@ -4,8 +4,8 @@ import AnimatedSpotlight from "parsegraph-animatedspotlight";
 import { Projector, Projected } from "parsegraph-projector";
 import { logc } from "parsegraph-log";
 import { Carousel } from "../carousel";
-import Method from 'parsegraph-method';
-import Camera from 'parsegraph-camera';
+import Method from "parsegraph-method";
+import Camera from "parsegraph-camera";
 
 export default class NavportCursor implements Projected {
   _focusedNode: PaintedNode;
@@ -75,7 +75,7 @@ export default class NavportCursor implements Projected {
     this._onRepaint.call();
   }
 
-  setOnScheduleUpdate(update: ()=>void) {
+  setOnScheduleUpdate(update: () => void) {
     this._onRepaint.set(update);
   }
 
@@ -95,7 +95,7 @@ export default class NavportCursor implements Projected {
     return true;
   }
 
-  setOnFocusedNodeChanged(update: ()=>void) {
+  setOnFocusedNodeChanged(update: () => void) {
     this._onFocusedNodeChanged.set(update);
   }
 

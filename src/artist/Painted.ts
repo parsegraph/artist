@@ -3,7 +3,7 @@ import Artist from "./Artist";
 import { WorldTransform } from "parsegraph-scene";
 import Freezable from "./freezer/Freezable";
 import { Interactive } from "./interact";
-import { Renderable } from 'parsegraph-timingbelt';
+import { Renderable } from "parsegraph-timingbelt";
 
 export interface Transformed {
   setWorldTransform(wt: WorldTransform): void;

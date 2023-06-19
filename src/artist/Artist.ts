@@ -1,6 +1,6 @@
 import { Projector } from "parsegraph-projector";
 import NodeValues from "./NodeValues";
-import { WorldRenderable } from "parsegraph-scene";
+import { WorldRenderable } from "./Painted";
 
 export default interface Artist<
   Model = {},

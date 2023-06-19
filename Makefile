@@ -45,7 +45,7 @@ SCRIPT_FILES = \
 	src/navport/displaymode/fullscreen.ts \
 	src/navport/displaymode/menuless.ts \
 	src/navport/displaymode/split.ts \
-	src/navport/NavportWebOverlay.ts \
+	src/navport/WebOverlay.ts \
 	src/navport/Navport.ts \
 	src/navport/CameraFilter.ts \
 	src/navport/InputController.ts \

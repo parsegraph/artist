@@ -1,7 +1,7 @@
 import { Keystroke } from "parsegraph-input";
 import { matrixTransform2D, makeInverse3x3 } from "parsegraph-matrix";
 import { MouseController, KeyController } from "parsegraph-input";
-import Camera from 'parsegraph-camera';
+import Camera from "parsegraph-camera";
 import { Carousel } from "../carousel";
 
 const RESET_CAMERA_KEY = "Escape";

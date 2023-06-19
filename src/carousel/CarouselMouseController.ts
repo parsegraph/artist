@@ -101,4 +101,3 @@ export default class CarouselMouseController extends BasicMouseController {
     return true;
   }
 }
-
